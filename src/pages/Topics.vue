@@ -1,5 +1,8 @@
 <script setup lang="ts">
-  import { onMounted } from "@vue/runtime-core";
+  import { onMounted, getCurrentInstance } from "@vue/runtime-core";
+  const globalProperties =
+    getCurrentInstance()?.appContext.config.globalProperties;
+  const router = globalProperties?.$router;
   onMounted(() => {
     console.log("onmounted");
   });
@@ -28,6 +31,10 @@
       <p class="contents">
         안녕하세요.<br />정확한 안내를 위해 앱 ID 부탁드립니다.
       </p>
+    </div>
+    <div class="btn-list">
+      <button class="list-btn" @click="router.push('/questions')">목록</button>
+      <button class="modify-btn">수정</button>
     </div>
   </main>
 </template>
@@ -61,6 +68,21 @@
     .contents {
       margin-top: 15px;
       line-height: 40px;
+    }
+  }
+  .refer-list {
+    background: #f0f4f6;
+  }
+  .btn-list {
+    margin-top: 20px;
+    text-align: right;
+    button {
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 5px 10px;
+    }
+    .list-btn {
+      margin-right: 10px;
     }
   }
 </style>

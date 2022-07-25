@@ -136,7 +136,6 @@
         color: white;
         background-color: #1a1b1e;
         border-radius: 5px;
-        line-height: 54px;
         width: 100px;
         height: 50px;
       }

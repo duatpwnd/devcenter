@@ -133,6 +133,8 @@
     input {
       width: calc(100% - 50px);
       border: 0;
+      padding: 0 10px;
+      box-sizing: border-box;
     }
     .search-btn {
       padding: 10px;
