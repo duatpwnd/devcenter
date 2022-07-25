@@ -1,0 +1,12 @@
+import { createApp } from "vue";
+import "./style.scss";
+import App from "./App.vue";
+import router from "./router";
+import util from "./plugin/util";
+import store from "./store";
+import axios from "axios";
+import SvgIcon from "vue3-icon";
+const app = createApp(App);
+app.config.globalProperties.axios = axios;
+app.component("svg-icon", SvgIcon);
+app.use(store).use(util).use(router).mount("#app");

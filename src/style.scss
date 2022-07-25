@@ -1,0 +1,114 @@
+@font-face {
+  font-family: "AppleSDGothic";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("fonts/AppleSDGothicNeoB.woff2") format("woff2"),
+    url("fonts/AppleSDGothicNeoB.woff") format("woff");
+}
+@font-face {
+  font-family: "AppleSDGothic";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fonts/AppleSDGothicNeoR.woff2") format("woff2"),
+    url("fonts/AppleSDGothicNeoR.woff") format("woff");
+}
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fonts/Poppins-Regular.woff") format("woff");
+}
+@font-face {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("fonts/Poppins-Bold.woff") format("woff");
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+html,
+body {
+  overscroll-behavior-y: none;
+  height: 100%;
+}
+body,
+button,
+input,
+select,
+table,
+textarea {
+  font-family: "AppleSDGothic", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+}
+ul {
+  li {
+    list-style: none;
+  }
+}
+
+dt {
+  font-weight: 700;
+}
+a {
+  text-decoration: none;
+  color: black;
+  display: inline-block;
+}
+span {
+  display: inline-block;
+}
+img {
+  vertical-align: middle;
+}
+button {
+  background: white;
+  font-weight: 700;
+  outline: none;
+  border: 0;
+  cursor: pointer;
+}
+textarea {
+  outline: none;
+  -webkit-appearance: none;
+}
+/* 아이폰 input 둥근테두리 그림자 제거 */
+
+input {
+  cursor: pointer;
+  -webkit-appearance: none;
+  -webkit-border-radius: 0;
+  outline: none;
+}
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px #f2f4f5 inset !important;
+}
+/* select 화살표 없애기 */
+
+select {
+  outline: none;
+  background: white;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 0;
+}
+
+select::-ms-expand {
+  display: none;
+}
+fieldset {
+  border: 0;
+}
+legend {
+  display: none;
+}
