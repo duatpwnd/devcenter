@@ -1,5 +1,5 @@
 import { getCurrentInstance, computed } from "vue";
-import store from "@/store/index";
+import store from "../store";
 const globalProperties =
   getCurrentInstance()?.appContext.config.globalProperties;
 const dbStore = computed(() => store.state.dbStore.db);
