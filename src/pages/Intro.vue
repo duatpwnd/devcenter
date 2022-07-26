@@ -1,8 +1,16 @@
 <script setup lang="ts">
   import { onMounted } from "@vue/runtime-core";
   onMounted(() => {
-    console.log("onmounted");
+    console.log("intro onmounted");
   });
 </script>
-<template>소개페이지</template>
-<style scoped lang="scss"></style>
+<template>
+  <main>
+    <img src="@/assets/images/intro.png" />
+  </main>
+</template>
+<style scoped lang="scss">
+  main {
+    text-align: center;
+  }
+</style>

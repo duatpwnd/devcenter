@@ -1,8 +1,9 @@
 <script setup lang="ts">
-  import { onMounted } from "@vue/runtime-core";
-  onMounted(() => {
-    console.log("onmounted");
-  });
+  import { onMounted, getCurrentInstance } from "@vue/runtime-core";
+  import { useRouter } from "vue-router";
+  const router = useRouter();
+  let currentPathObject = router.currentRoute.value;
+  console.log(currentPathObject);
 </script>
 <template>
   <nav>
