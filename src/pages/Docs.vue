@@ -131,6 +131,7 @@
 </template>
 <style scoped lang="scss">
   main {
+    background-color: white;
     section {
       .modify-btn {
         color: white;

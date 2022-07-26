@@ -1,9 +1,5 @@
 <script setup lang="ts">
-  import { onMounted, getCurrentInstance } from "@vue/runtime-core";
-  import { useRouter } from "vue-router";
-  const router = useRouter();
-  let currentPathObject = router.currentRoute.value;
-  console.log(currentPathObject);
+  import { onMounted, getCurrentInstance, computed } from "@vue/runtime-core";
 </script>
 <template>
   <nav>
@@ -35,14 +31,16 @@
 </template>
 <style scoped lang="scss">
   nav {
-    height: calc(100vh - 74px);
+    height: calc(100vh - 80px);
     background-color: #1a1b1e;
     display: inline-block;
     width: 300px;
     box-sizing: border-box;
     padding: 32px;
-    position: sticky;
-    top: 74px;
+    position: fixed;
+    top: 80px;
+    left: 0;
+    z-index: 1;
     .main-menu {
       li {
         a {

@@ -1,6 +1,8 @@
 <script setup lang="ts">
   import { onMounted, getCurrentInstance } from "@vue/runtime-core";
   import { faSearch } from "@fortawesome/free-solid-svg-icons";
+  import { useRoute } from "vue-router";
+  const route = useRoute();
   const globalProperties =
     getCurrentInstance()?.appContext.config.globalProperties;
   const router = globalProperties?.$router;
@@ -124,47 +126,50 @@
   </main>
 </template>
 <style scoped lang="scss">
-  .search-area {
-    margin-bottom: 20px;
-    width: 260px;
-    border-radius: 4px;
-    overflow: hidden;
-    border: 1px solid #d8dde6;
-    input {
-      width: calc(100% - 50px);
-      border: 0;
-      padding: 0 10px;
-      box-sizing: border-box;
-    }
-    .search-btn {
-      padding: 10px;
-      box-sizing: border-box;
-      border-left: 1px solid #d8dde6;
-      width: 50px;
-    }
-  }
-  .input-group-append {
-    display: inline-block;
-    width: 46px;
-  }
-  table {
-    width: 100%;
-    box-sizing: border-box;
-    border-collapse: collapse;
-    border-bottom: 1px solid #d8dde6;
-    tr {
-      cursor: pointer;
-      &:nth-child(2n-1) {
-        background: #f2f4f8;
+  main {
+    background-color: white;
+    .search-area {
+      margin-bottom: 20px;
+      width: 260px;
+      border-radius: 4px;
+      overflow: hidden;
+      border: 1px solid #d8dde6;
+      input {
+        width: calc(100% - 50px);
+        border: 0;
+        padding: 0 10px;
+        box-sizing: border-box;
       }
-      th {
-        background-color: #6a77a4;
-        padding: 16px;
-        color: white;
+      .search-btn {
+        padding: 10px;
+        box-sizing: border-box;
+        border-left: 1px solid #d8dde6;
+        width: 50px;
       }
-      td {
-        padding: 16px;
-        text-align: center;
+    }
+    .input-group-append {
+      display: inline-block;
+      width: 46px;
+    }
+    table {
+      width: 100%;
+      box-sizing: border-box;
+      border-collapse: collapse;
+      border-bottom: 1px solid #d8dde6;
+      tr {
+        cursor: pointer;
+        &:nth-child(2n-1) {
+          background: #f2f4f8;
+        }
+        th {
+          background-color: #6a77a4;
+          padding: 16px;
+          color: white;
+        }
+        td {
+          padding: 16px;
+          text-align: center;
+        }
       }
     }
   }

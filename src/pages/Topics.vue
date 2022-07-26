@@ -39,50 +39,53 @@
   </main>
 </template>
 <style scoped lang="scss">
-  .comment-list,
-  .refer-list {
-    padding: 20px;
-    border-bottom: 1px solid #ccc;
-    .header {
-      position: relative;
-      .user-id {
-        padding-left: 38px;
-        font-weight: 700;
-        font-size: 18px;
-        display: inline-block;
-        height: 45px;
-        line-height: 45px;
-        background: url("https://devtalk.kakao.com/user_avatar/devtalk.kakao.com/tim.l/45/14646_2.png")
-          no-repeat center left -8px / 45px 45px;
+  main {
+    background-color: white;
+    .comment-list,
+    .refer-list {
+      padding: 20px;
+      border-bottom: 1px solid #ccc;
+      .header {
+        position: relative;
+        .user-id {
+          padding-left: 38px;
+          font-weight: 700;
+          font-size: 18px;
+          display: inline-block;
+          height: 45px;
+          line-height: 45px;
+          background: url("https://devtalk.kakao.com/user_avatar/devtalk.kakao.com/tim.l/45/14646_2.png")
+            no-repeat center left -8px / 45px 45px;
+        }
+        .time {
+          position: absolute;
+          right: 0;
+          bottom: 0;
+          top: 0;
+          margin: auto;
+          height: 21px;
+          color: #898585;
+        }
       }
-      .time {
-        position: absolute;
-        right: 0;
-        bottom: 0;
-        top: 0;
-        margin: auto;
-        height: 21px;
-        color: #898585;
+      .contents {
+        margin-top: 15px;
+        line-height: 40px;
       }
     }
-    .contents {
-      margin-top: 15px;
-      line-height: 40px;
+    .refer-list {
+      background: #f0f4f6;
     }
-  }
-  .refer-list {
-    background: #f0f4f6;
-  }
-  .btn-list {
-    margin-top: 20px;
-    text-align: right;
-    button {
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      padding: 5px 10px;
-    }
-    .list-btn {
-      margin-right: 10px;
+    .btn-list {
+      margin-top: 20px;
+      text-align: right;
+      button {
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 5px 10px;
+      }
+      .list-btn {
+        margin-right: 10px;
+      }
     }
   }
 </style>
