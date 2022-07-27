@@ -36,7 +36,6 @@
           :class="{
             toggleActive: isSdkShow,
           }"
-          x
           >SDK 다운로드</strong
         >
         <slide-up-down v-model="isSdkShow" :duration="300">
