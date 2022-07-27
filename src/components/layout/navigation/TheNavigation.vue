@@ -18,13 +18,15 @@
             isLabcodeShow = !isLabcodeShow;
             defaultActiveNav = 'intro';
           "
-          :class="isLabcodeShow ? 'active' : 'inactive'"
+          :class="{
+            toggleActive: isLabcodeShow,
+          }"
           :style="defaultActiveNav == 'intro' ? activeStyle : ''"
           >랩코드 소개</strong
         >
         <slide-up-down v-model="isLabcodeShow" :duration="300">
           <ul class="sub-menu">
-            <li>
+            <li @click="defaultActiveNav = 'intro'">
               <router-link to="/intro">랩코드란?</router-link>
             </li>
           </ul>
@@ -36,16 +38,18 @@
             isSdkShow = !isSdkShow;
             defaultActiveNav = 'sdk';
           "
-          :class="isSdkShow ? 'active' : 'inactive'"
+          :class="{
+            toggleActive: isSdkShow,
+          }"
           :style="defaultActiveNav == 'sdk' ? activeStyle : ''"
           >SDK 다운로드</strong
         >
         <slide-up-down v-model="isSdkShow" :duration="300">
           <ul class="sub-menu">
-            <li>
+            <li @click="defaultActiveNav = 'sdk'">
               <router-link to="/docs"> 버전별 다운로드 </router-link>
             </li>
-            <li>
+            <li @click="defaultActiveNav = 'sdk'">
               <router-link to="/topics"> 단계별 가이드 </router-link>
             </li>
           </ul>
@@ -57,13 +61,17 @@
             isfaqShow = !isfaqShow;
             defaultActiveNav = 'faq';
           "
-          :class="isfaqShow ? 'active' : 'inactive'"
+          :class="{
+            toggleActive: isfaqShow,
+          }"
           :style="defaultActiveNav == 'faq' ? activeStyle : ''"
           >FAQ</strong
         >
         <slide-up-down v-model="isfaqShow" :duration="300">
           <ul class="sub-menu">
-            <li><router-link to="/questions"> 문의하기</router-link></li>
+            <li @click="defaultActiveNav = 'faq'">
+              <router-link to="/questions"> 문의하기</router-link>
+            </li>
           </ul>
         </slide-up-down>
       </li>
@@ -85,21 +93,20 @@
     .main-menu {
       color: #b8bfc4;
       li {
-        .active {
-          background: url("@/assets/images/active_arrow_top.svg") no-repeat
-            center right 16px / 16px 16px;
-        }
-        .inactive {
-          background: url("@/assets/images/inactive_arrow_bottom.svg") no-repeat
-            center right 16px / 16px 16px;
-        }
         strong {
           border-radius: 8px;
           width: 100%;
           padding: 12px 16px;
           box-sizing: border-box;
           display: block;
+          background: url("@/assets/images/inactive_arrow_bottom.svg") no-repeat
+            center right 16px / 16px 16px;
         }
+        .toggleActive {
+          background: url("@/assets/images/active_arrow_top.svg") no-repeat
+            center right 16px / 16px 16px;
+        }
+
         a {
           color: #b8bfc4;
           width: 100%;
