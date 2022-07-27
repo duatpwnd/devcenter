@@ -3,30 +3,30 @@
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url("fonts/AppleSDGothicNeoB.woff2") format("woff2"),
-    url("fonts/AppleSDGothicNeoB.woff") format("woff");
+  src: url("@/assets/fonts/AppleSDGothicNeoB.woff2") format("woff2"),
+    url("@/assets/fonts/AppleSDGothicNeoB.woff") format("woff");
 }
 @font-face {
   font-family: "AppleSDGothic";
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("fonts/AppleSDGothicNeoR.woff2") format("woff2"),
-    url("fonts/AppleSDGothicNeoR.woff") format("woff");
+  src: url("@/assets/fonts/AppleSDGothicNeoR.woff2") format("woff2"),
+    url("@/assets/fonts/AppleSDGothicNeoR.woff") format("woff");
 }
 @font-face {
   font-family: "Poppins";
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("fonts/Poppins-Regular.woff") format("woff");
+  src: url("@/assets/fonts/Poppins-Regular.woff") format("woff");
 }
 @font-face {
   font-family: "Poppins";
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url("fonts/Poppins-Bold.woff") format("woff");
+  src: url("@/assets/fonts/Poppins-Bold.woff") format("woff");
 }
 * {
   margin: 0;
