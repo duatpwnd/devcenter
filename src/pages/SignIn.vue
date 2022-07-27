@@ -34,7 +34,7 @@
   </main>
 </template>
 <style scoped lang="scss">
-  ::v-deep .base-checkbox {
+  :deep .base-checkbox {
     .container-checkbox {
       margin-right: 9px;
     }
