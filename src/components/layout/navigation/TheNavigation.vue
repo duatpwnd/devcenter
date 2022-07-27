@@ -4,10 +4,6 @@
   const isLabcodeShow = ref(false);
   const isSdkShow = ref(true);
   const isfaqShow = ref(false);
-  const activeStyle = {
-    backgroundColor: "#3D6AFF",
-    color: "#F6F7F8",
-  };
 </script>
 <template>
   <nav>
@@ -21,7 +17,6 @@
           :class="{
             toggleActive: isLabcodeShow,
           }"
-          :style="defaultActiveNav == 'intro' ? activeStyle : ''"
           >랩코드 소개</strong
         >
         <slide-up-down v-model="isLabcodeShow" :duration="300">
@@ -41,7 +36,7 @@
           :class="{
             toggleActive: isSdkShow,
           }"
-          :style="defaultActiveNav == 'sdk' ? activeStyle : ''"
+          x
           >SDK 다운로드</strong
         >
         <slide-up-down v-model="isSdkShow" :duration="300">
@@ -64,7 +59,6 @@
           :class="{
             toggleActive: isfaqShow,
           }"
-          :style="defaultActiveNav == 'faq' ? activeStyle : ''"
           >FAQ</strong
         >
         <slide-up-down v-model="isfaqShow" :duration="300">
@@ -103,8 +97,9 @@
             center right 16px / 16px 16px;
         }
         .toggleActive {
-          background: url("@/assets/images/active_arrow_top.svg") no-repeat
-            center right 16px / 16px 16px;
+          background: url("@/assets/images/active_arrow_top.svg") #3d6aff
+            no-repeat center right 16px / 16px 16px;
+          color: #f6f7f8;
         }
 
         a {
@@ -114,6 +109,7 @@
           box-sizing: border-box;
         }
         .slide-up-down__container {
+          margin: 5px 0;
           font-size: 14px;
           a {
             color: #525660;
