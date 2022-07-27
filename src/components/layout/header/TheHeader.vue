@@ -6,7 +6,7 @@
 </script>
 <template>
   <header>
-    <img src="@/assets/images/logo.svg" class="logo" />
+    <img src="@/assets/images/logo.svg" class="logo" alt="logo" title="logo" />
   </header>
 </template>
 <style scoped lang="scss">
@@ -16,6 +16,7 @@
     top: 0;
     left: 0;
     z-index: 21;
+    height: 80px;
     background-color: #1a1b1e;
   }
 </style>
