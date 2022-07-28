@@ -19,6 +19,26 @@
 </script>
 <template>
   <main>
+    <BaseSelectBox
+      :options="[
+        { name: '팀원' },
+        { name: '팀장' },
+        { name: '임원진' },
+        { name: '기타' },
+      ]"
+      :style="{
+        button: {
+          padding: '14px 28.5px 14px 20px',
+        },
+        ul: {
+          padding: '8px',
+        },
+        li: {
+          height: '48px',
+          padding: '12px',
+        },
+      }"
+    />
     <!-- <BaseModal :okEvent="test">
       <template #title> 제목 입니다. </template>
       <template #contents> 내용입니다. </template>
