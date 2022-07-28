@@ -13,9 +13,16 @@
   const complete = () => {
     isModify.value = false;
   };
+  const test = () => {
+    console.log("test");
+  };
 </script>
 <template>
   <main>
+    <!-- <BaseModal :okEvent="test">
+      <template #title> 제목 입니다. </template>
+      <template #contents> 내용입니다. </template>
+    </BaseModal> -->
     <section class="guide-section">
       <div class="header">
         <h1 class="h1-title">SDK 및 응용 프로그램 다운로드</h1>

@@ -1,6 +1,5 @@
 <script setup lang="ts">
   import { onMounted, getCurrentInstance, ref } from "@vue/runtime-core";
-  const defaultActiveNav = ref("sdk");
   const isLabcodeShow = ref(false);
   const isSdkShow = ref(true);
   const isfaqShow = ref(false);
@@ -10,10 +9,7 @@
     <ul class="main-menu">
       <li>
         <strong
-          @click="
-            isLabcodeShow = !isLabcodeShow;
-            defaultActiveNav = 'intro';
-          "
+          @click="isLabcodeShow = !isLabcodeShow"
           :class="{
             toggleActive: isLabcodeShow,
           }"
@@ -21,7 +17,7 @@
         >
         <slide-up-down v-model="isLabcodeShow" :duration="300">
           <ul class="sub-menu">
-            <li @click="defaultActiveNav = 'intro'">
+            <li>
               <router-link to="/intro">랩코드란?</router-link>
             </li>
           </ul>
@@ -29,10 +25,7 @@
       </li>
       <li>
         <strong
-          @click="
-            isSdkShow = !isSdkShow;
-            defaultActiveNav = 'sdk';
-          "
+          @click="isSdkShow = !isSdkShow"
           :class="{
             toggleActive: isSdkShow,
           }"
@@ -40,10 +33,10 @@
         >
         <slide-up-down v-model="isSdkShow" :duration="300">
           <ul class="sub-menu">
-            <li @click="defaultActiveNav = 'sdk'">
+            <li>
               <router-link to="/docs"> 버전별 다운로드 </router-link>
             </li>
-            <li @click="defaultActiveNav = 'sdk'">
+            <li>
               <router-link to="/topics"> 단계별 가이드 </router-link>
             </li>
           </ul>
@@ -51,10 +44,7 @@
       </li>
       <li>
         <strong
-          @click="
-            isfaqShow = !isfaqShow;
-            defaultActiveNav = 'faq';
-          "
+          @click="isfaqShow = !isfaqShow"
           :class="{
             toggleActive: isfaqShow,
           }"
@@ -62,7 +52,7 @@
         >
         <slide-up-down v-model="isfaqShow" :duration="300">
           <ul class="sub-menu">
-            <li @click="defaultActiveNav = 'faq'">
+            <li>
               <router-link to="/questions"> 문의하기</router-link>
             </li>
           </ul>
