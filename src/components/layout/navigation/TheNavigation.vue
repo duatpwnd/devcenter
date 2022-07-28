@@ -36,9 +36,6 @@
             <li>
               <router-link to="/docs"> 버전별 다운로드 </router-link>
             </li>
-            <li>
-              <router-link to="/topics"> 단계별 가이드 </router-link>
-            </li>
           </ul>
         </slide-up-down>
       </li>
