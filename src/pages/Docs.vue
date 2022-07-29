@@ -19,7 +19,7 @@
 </script>
 <template>
   <main>
-    <BaseSelectBox
+    <!-- <BaseSelectBox
       :options="[
         { name: '팀원' },
         { name: '팀장' },
@@ -38,7 +38,7 @@
           padding: '12px',
         },
       }"
-    />
+    /> -->
     <!-- <BaseModal :okEvent="test">
       <template #title> 제목 입니다. </template>
       <template #contents> 내용입니다. </template>

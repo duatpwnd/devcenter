@@ -7,6 +7,7 @@
 <template>
   <header>
     <img src="@/assets/images/logo.svg" class="logo" alt="logo" title="logo" />
+    <router-link to="/dashboard" class="dashboard-link">대시보드</router-link>
   </header>
 </template>
 <style scoped lang="scss">
@@ -18,5 +19,9 @@
     z-index: 21;
     height: 80px;
     background-color: #1a1b1e;
+    .dashboard-link {
+      vertical-align: middle;
+      color: #b8bfc4;
+    }
   }
 </style>
