@@ -13,7 +13,10 @@ declare module "froala-editor/js/froala_editor.pkgd.min.js" {
     }
   }
 }
+
 declare module "vue3-icon";
+declare module "d3";
+declare module "plotly.js-dist-min";
 declare module "vue3-markdown-it";
 declare module "markdown-it-strikethrough-alt";
 declare module "markdown-it-abbr";

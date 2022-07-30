@@ -10,11 +10,11 @@
 <template>
   <main>
     <!-- <DoughnutChart /> -->
-    <LineChart />
+    <TimeSeriesChart />
   </main>
 </template>
 <style scoped lang="scss">
   main {
-    background: #f2f4f5;
+    background: rgb(22, 26, 30);
   }
 </style>
