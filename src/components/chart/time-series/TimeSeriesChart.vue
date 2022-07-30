@@ -6,6 +6,7 @@
     getCurrentInstance()?.appContext.config.globalProperties;
   const axios = globalProperties?.axios;
   const csvJSON = (csvStr: string) => {
+    console.log("csvStr", csvStr);
     const lines = csvStr.split("\n");
     let result = [];
     // NOTE: If your columns contain commas in their values, you'll need
@@ -61,8 +62,36 @@
             tickfont: {
               color: "rgb(132, 142, 156)",
             },
-
-            range: ["2015-04-01", "2015-10-01"],
+            rangeselector: {
+              activecolor: "rgb(252, 213, 53)",
+              font: {
+                color: "rgb(24, 26, 32)",
+              },
+              buttons: [
+                {
+                  count: 6,
+                  label: "1D",
+                  step: "day",
+                  stepmode: "backward",
+                },
+                {
+                  count: 6,
+                  label: "1M",
+                  step: "month",
+                  stepmode: "backward",
+                },
+                {
+                  count: 6,
+                  label: "1Y",
+                  step: "year",
+                  stepmode: "backward",
+                },
+                {
+                  label: "All",
+                  step: "all",
+                },
+              ],
+            },
             type: "date",
             tickformat: "%Y-%m-%d", // For more time formatting types, see: https://github.com/d3/d3-time-format/blob/master/README.md
           },
