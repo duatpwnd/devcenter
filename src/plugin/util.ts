@@ -121,5 +121,22 @@ export default {
       };
       return { createDatabase, addIndexedDB, getIndexedDB, deleteIndexedDB };
     };
+    // csv to JSON
+    app.config.globalProperties.$csvToJSON = (csvStr: string) => {
+      const lines = csvStr.split("\n");
+      let result = [];
+      const headers = lines[0].replace(/\r/g, "");
+      const split = headers.split(",");
+      for (let i = 1; i < lines.length; i++) {
+        let obj: { [key: string]: any } = {};
+        const currentline = lines[i].replace(/\r/g, "");
+        const currentSplit = currentline.split(",");
+        for (let j = 0; j < split.length; j++) {
+          obj[split[j]] = currentSplit[j];
+        }
+        result.push(obj);
+      }
+      return result; //JavaScript object
+    };
   },
 };
