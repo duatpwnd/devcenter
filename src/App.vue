@@ -9,25 +9,25 @@
   import Footer from "@/components/layout/footer/TheFooter.vue";
   import Navigation from "@/components/layout/navigation/TheNavigation.vue";
   import { useRoute } from "vue-router";
+  import { useMq } from "vue3-mq";
+  const mq = useMq();
   const routeName = computed(() => {
     return useRoute().name;
   });
-  const signInPathStyle = {
-    marginLeft: 0,
-    width: "100%",
-  };
-  const otherPathStyle = {
-    marginLeft: "300px",
-    width: "calc(100% -  300px)",
-  };
 </script>
 
 <template>
   <Header />
-  <Navigation v-if="routeName != 'signIn'" />
-  <router-view
-    :style="routeName == 'signIn' ? signInPathStyle : otherPathStyle"
-  />
+  <!--
+      phone	0
+      tablet	768
+      laptop	1370
+      desktop	1906
+  -->
+  <mq-responsive target="laptop+">
+    <Navigation v-if="routeName != 'signIn'" />
+  </mq-responsive>
+  <router-view :class="[mq.current, routeName]" />
   <Footer />
 </template>
 
@@ -41,5 +41,11 @@
     width: calc(100% - 300px);
     padding: 52px;
     box-sizing: border-box;
+  }
+  main.tablet,
+  main.phone,
+  main.signIn {
+    margin-left: 0;
+    width: 100%;
   }
 </style>
