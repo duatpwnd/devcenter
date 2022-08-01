@@ -1,15 +1,17 @@
 <script setup lang="ts">
-  import { onMounted, defineProps, ref } from "@vue/runtime-core";
+  import { onMounted, defineProps, defineEmits, ref } from "@vue/runtime-core";
   interface Props {
     options: { [key: string]: any }[];
     style: { [key: string]: any };
   }
+  const emit = defineEmits(["update:value"]);
   const props = defineProps<Props>();
   const isActiveSelectModal = ref(false);
   const selected = ref(props.options[0].name);
   const select = (name: string) => {
     selected.value = name;
     isActiveSelectModal.value = false;
+    emit("update:value", name);
   };
   onMounted(() => {
     console.log("onmounted");
@@ -21,7 +23,11 @@
     :class="[{ 'active-toggle': isActiveSelectModal }, 'select-btn']"
     @click="isActiveSelectModal = !isActiveSelectModal"
   >
-    {{ selected }}<span class="arrow-ico"></span>
+    {{ selected
+    }}<span
+      class="arrow-ico"
+      :class="isActiveSelectModal ? 'arrow-top' : 'arrow-bottom'"
+    ></span>
   </button>
   <ul :style="style.ul" v-show="isActiveSelectModal">
     <li
@@ -49,6 +55,12 @@
       width: 12px;
       height: 12px;
       align-self: center;
+    }
+    .arrow-bottom {
+      background: url("@/assets/images/select_arrow_bottom.svg") no-repeat
+        center center / 12px 12px;
+    }
+    .arrow-top {
       background: url("@/assets/images/select_arrow_top.svg") no-repeat center
         center / 12px 12px;
     }

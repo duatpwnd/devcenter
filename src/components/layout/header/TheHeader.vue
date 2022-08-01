@@ -20,7 +20,7 @@
     height: 80px;
     background-color: #1a1b1e;
     .dashboard-link {
-      vertical-align: middle;
+      vertical-align: -3px;
       color: #b8bfc4;
     }
   }
