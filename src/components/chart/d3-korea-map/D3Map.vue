@@ -9,7 +9,7 @@
   import LOCAL_SEAT_FINAL from "@/assets/localseat.final.js";
   import geoJSON from "@/assets/korea.json";
   import mapArea from "@/assets/map.area.json";
-  let centered = ref<{ [key: string]: any } | null>(null || {});
+  let centered: { [key: string]: any } | undefined | null = undefined;
   const globalProperties =
     getCurrentInstance()?.appContext.config.globalProperties;
   const axios = globalProperties?.axios;
@@ -253,12 +253,10 @@
 
     // 지역구 정보 열기
     const openInfo = (province: any) => {
-      console.log(province);
       if (province) {
         province.candidate = findCandidate(province.SGG_Code);
         province.final = localSeatFinal[province.SGG_Code];
       }
-      console.log(province);
       currentProvince.value = province;
     };
     // 지역구 정보 닫기
@@ -267,27 +265,25 @@
     };
     // Get province color
     function clicked(d: { [key: string]: any }) {
+      console.log(d.target.__data__, centered);
       let x, y, k;
       // Compute centroid of the selected path
-      if (d && centered.value !== d) {
+      if (d.target.__data__ && centered !== d.target.__data__) {
         let centroid = path.centroid(d.target.__data__);
         x = centroid[0];
         y = centroid[1];
         k = 4;
-        centered.value = d.target.__data__;
+        centered = d.target.__data__;
         openInfo(d.target.__data__.properties);
       } else {
         x = width / 2;
         y = height / 2;
         k = 1;
-        centered.value = null;
+        centered = null;
         closeInfo();
       }
       mapLayer.selectAll("path").style("fill", (d: { [key: string]: any }) => {
-        console.log(Object.assign({}, { ...centered.value }), d);
-        return { ...centered.value } && d == { ...centered.value }
-          ? "#D5708B"
-          : fillFn(d);
+        return centered && d === centered ? "#D5708B" : fillFn(d);
       });
       // Zoom
       g.transition()
@@ -321,7 +317,7 @@
       selectProvince({});
       // Reset province color
       mapLayer.selectAll("path").style("fill", (d: { [key: string]: any }) => {
-        return centered.value && d === centered.value ? "#D5708B" : fillFn(d);
+        return centered && d === centered ? "#D5708B" : fillFn(d);
       });
     }
     background.on("click", clicked);
