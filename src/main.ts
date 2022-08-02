@@ -18,6 +18,7 @@ import DoughnutChart from "@/components/chart/doughnut/DoughnutChart.vue";
 import TimeSeriesChart from "@/components/chart/time-series/TimeSeriesChart.vue";
 import BarChart from "@/components/chart/bar/BarChart.vue";
 import KoreaMap from "@/components/chart/korea-map/KoreaMap.vue";
+import D3Map from "@/components/chart/d3-korea-map/D3Map.vue";
 const app = createApp(App);
 console.log(app.config);
 app.config.globalProperties.axios = axios;
@@ -32,6 +33,7 @@ app.component("Datepicker", Datepicker);
 app.component("KoreaMap", KoreaMap);
 app.component("BarChart", BarChart);
 app.component("mq-responsive", MqResponsive);
+app.component("D3Map", MqResponsive);
 app
   .use(router)
   .use(Vue3Mq, {

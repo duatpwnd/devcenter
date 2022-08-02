@@ -1,6 +1,7 @@
 <script setup lang="ts">
   import { onMounted, ref } from "@vue/runtime-core";
   import { useMq } from "vue3-mq";
+  import D3Map from "../components/chart/d3-korea-map/D3Map.vue";
   const date = ref();
   const mq = useMq();
   onMounted(() => {
@@ -30,6 +31,7 @@
 </script>
 <template>
   <main>
+    <D3Map />
     <TimeSeriesChart />
     <div class="korea-map-wrapper">
       <KoreaMap :data="regionList" />

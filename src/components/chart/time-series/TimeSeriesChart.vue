@@ -108,7 +108,6 @@
       )
       .then((result: any) => {
         csvToJSONarray.value = csvToJSON(result.data);
-        console.log("csvToJSONarray", csvToJSONarray.value);
         data[0].x = unpack(csvToJSONarray.value, "Date");
         data[0].y = unpack(csvToJSONarray.value, "AAPL.High");
         data[1].x = unpack(csvToJSONarray.value, "Date");
