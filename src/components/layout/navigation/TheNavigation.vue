@@ -39,7 +39,7 @@
           </ul>
         </slide-up-down>
       </li>
-      <li>
+      <!-- <li>
         <strong
           @click="isfaqShow = !isfaqShow"
           :class="{
@@ -54,7 +54,7 @@
             </li>
           </ul>
         </slide-up-down>
-      </li>
+      </li> -->
     </ul>
   </nav>
 </template>
