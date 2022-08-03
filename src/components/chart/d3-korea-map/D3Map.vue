@@ -16,6 +16,7 @@
   const province = ref<{ [key: string]: any }>({});
   const currentProvince = ref<{ [key: string]: any }>({});
   const localSeatData = reactive<{ [key: string]: any }>({});
+  const mapWrapper = ref(null);
   const partyList: { [key: string]: any } = {
     theminjoo: {
       name: "더불어민주당",
@@ -127,13 +128,13 @@
     .domain([1, 20])
     .clamp(true)
     .range(["#595959", "#595959"]);
-  const partyColor = (code: any) => {
+  const partyColor = (code: number) => {
     let color = null;
     const localSeatCode = "" + code;
     if (localSeatCode in localSeatFinal) {
       const localSeat = localSeatFinal[localSeatCode];
       let candidate: null | { [key: string]: any } = null || {};
-      localSeat.some((item: any) => {
+      localSeat.some((item: { [key: string]: any }) => {
         if (item.elected === true) {
           candidate = item;
           return true;
@@ -146,15 +147,15 @@
     }
     return color;
   };
-  const nameFn = (d: any) => {
+  const nameFn = (d: { [key: string]: any }) => {
     return d && d.properties ? d.properties.name : null;
   };
-  const nameLength = (d: any) => {
+  const nameLength = (d: { [key: string]: any }) => {
     const n = nameFn(d);
     return n ? n.length : 0;
   };
 
-  const fillFn = (d: any) => {
+  const fillFn = (d: { [key: string]: any }) => {
     const pcolor = partyColor(d.properties.SGG_Code);
     if (pcolor) {
       return pcolor;
@@ -174,9 +175,8 @@
     const geojson = geoJSON;
     // 지도의 중심점 찾기
     const center = d3.geoCentroid(geojson);
-
     // 현재의 브라우저의 크기 계산
-    const divWidth = (document.getElementById("map-wrapper") as HTMLDivElement)
+    const divWidth = (mapWrapper.value as unknown as HTMLDivElement)
       .clientWidth;
     const width = divWidth < 1000 ? divWidth * 0.9 : 1000;
     const height = width * 1;
@@ -187,13 +187,7 @@
       .select(".map-wrapper")
       .append("svg")
       .attr("width", width)
-      .attr("height", height)
-      .on("mouseover", () => {
-        document.body.style.overflow = "hidden";
-      })
-      .on("mouseout", () => {
-        document.body.style.overflow = "auto";
-      });
+      .attr("height", height);
 
     // 배경 그리기
     const background = svg
@@ -230,11 +224,11 @@
       .domain([1, 20])
       .clamp(true)
       .range(["#595959", "#595959"]);
-    const findCandidate = (code: any) => {
+    const findCandidate = (code: number) => {
       let candidate = null;
       const localSeat = localSeatFinal[code];
       if (code != undefined) {
-        localSeat.some((item: any) => {
+        localSeat.some((item: { [key: string]: any }) => {
           if (item.elected === true) {
             candidate = item;
             return true;
@@ -245,12 +239,10 @@
     };
     const selectProvince = (obj: { [key: string]: any }) => {
       province.value = obj;
-
       if (province.value) {
         province.value.candidate = findCandidate(province.value.SGG_Code);
       }
     };
-
     // 지역구 정보 열기
     const openInfo = (province: any) => {
       if (province) {
@@ -264,12 +256,12 @@
       currentProvince.value = {};
     };
     // Get province color
-    function clicked(d: { [key: string]: any }) {
-      console.log(d.target.__data__, centered);
+    const clicked = (d: { [key: string]: any }) => {
       let x, y, k;
       // Compute centroid of the selected path
       if (d.target.__data__ && centered !== d.target.__data__) {
         let centroid = path.centroid(d.target.__data__);
+        console.log(centroid);
         x = centroid[0];
         y = centroid[1];
         k = 4;
@@ -302,24 +294,24 @@
             -y +
             ")"
         );
-    }
+    };
 
-    function mouseover(d: { [key: string]: any }) {
+    const mouseover = (d: { [key: string]: any }) => {
       // Highlight hovered province
       d3.select(d.target).style("fill", "#1483ce");
       // d3.select(this).style('fill', '#004EA2');
       if (d.target) {
         selectProvince(d.target.__data__.properties);
       }
-    }
+    };
 
-    function mouseout(d: any) {
+    const mouseout = (d: any) => {
       selectProvince({});
       // Reset province color
       mapLayer.selectAll("path").style("fill", (d: { [key: string]: any }) => {
         return centered && d === centered ? "#D5708B" : fillFn(d);
       });
-    }
+    };
     background.on("click", clicked);
     // 지도 그리기
     mapLayer
@@ -346,7 +338,7 @@
   });
 </script>
 <template>
-  <div id="map-wrapper" class="map-wrapper">
+  <div id="map-wrapper" class="map-wrapper" ref="mapWrapper">
     <div v-if="province" class="province-title text-left">
       <h3 class="text-center">
         {{ province.SGG_2 }}
