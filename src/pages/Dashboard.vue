@@ -31,7 +31,7 @@
 </script>
 <template>
   <main>
-    <D3Map />
+    <!-- <D3Map /> -->
     <TimeSeriesChart />
     <div class="korea-map-wrapper">
       <KoreaMap :data="regionList" />

@@ -34,6 +34,7 @@
     "markdown-it-sup": "^1.0.0",
     "markdown-it-task-lists": "^2.1.1",
     "markdown-it-toc-done-right": "^4.2.0",
+    "mitt": "^3.0.0",
     "path": "^0.12.7",
     "plotly.js-dist": "^2.13.3",
     "plotly.js-dist-min": "^2.13.3",

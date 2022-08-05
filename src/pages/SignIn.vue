@@ -1,6 +1,9 @@
 <script setup lang="ts">
   import { onMounted, ref } from "@vue/runtime-core";
   const isMaintain = ref([]);
+  const isShowPassword = ref(false);
+  const userId = ref("");
+  const userPw = ref("");
 </script>
 <template>
   <main>
@@ -9,12 +12,35 @@
         <fieldset>
           <legend>로그인</legend>
           <h1 class="login-title">LOGIN</h1>
-          <input type="text" placeholder="이메일(아이디)" class="input-text" />
-          <input
-            type="password"
-            placeholder="비밀번호"
-            class="input-password"
-          />
+          <div class="id-area">
+            <input
+              type="text"
+              @input="(e:any)=>{userId = e.target.value}"
+              id="userId"
+              class="input-text"
+              autocomplete="off"
+              required
+            />
+            <label for="userId"><span>이메일</span></label>
+          </div>
+          <div class="pw-area">
+            <input
+              :type="isShowPassword ? 'text' : 'password'"
+              @input="(e:any)=>{userPw = e.target.value}"
+              id="userPw"
+              class="input-password"
+              autocomplete="off"
+              required
+            />
+            <button
+              type="button"
+              class="show-hide-btn"
+              v-if="userPw.length > 0"
+              @click="isShowPassword = !isShowPassword"
+              v-text="isShowPassword ? 'HIDE' : 'SHOW'"
+            ></button>
+            <label for="userPw"><span>비밀번호</span></label>
+          </div>
           <div class="keep-login-area">
             <CheckBox
               fieldId="로그인 상태 유지"
@@ -53,24 +79,70 @@
     }
     form {
       width: 480px;
-      .input-text,
-      .input-password {
-        background: #2f3137;
-        border-radius: 8px;
-        padding: 18px 20px;
-        box-sizing: border-box;
-        border: 1px solid #2f3137;
-        width: 100%;
-        height: 62px;
-        border: 0;
+      .id-area,
+      .pw-area {
         margin-top: 16px;
-        color: #e3e5e8;
-        caret-color: #3d6aff;
-        &:focus {
-          border: 1px solid #3d6aff;
-          padding-left: 19px;
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        border-radius: 8px;
+        input {
+          box-sizing: border-box;
+          padding: 34px 20px 13px 20px;
+          width: 100%;
+          color: #e3e5e8;
+          border: 0;
+          background: #2f3137;
+          caret-color: #3d6aff;
+        }
+        label {
+          position: absolute;
+          left: 0px;
+          bottom: 0;
+          border: 1px solid #2f3137;
+          box-sizing: border-box;
+          width: 100%;
+          height: 100%;
+          text-align: left;
+          pointer-events: none;
+          overflow: hidden;
+          span {
+            color: #525660;
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            height: 20px;
+            transition: all 0.3s ease;
+          }
+        }
+        input {
+          &:focus ~ label span,
+          &:valid ~ label span {
+            transform: translateY(-50%);
+            font-size: 11px;
+          }
+          &:focus ~ label {
+            border-radius: 8px;
+            border: 1px solid #3d6aff;
+            overflow: hidden;
+            span {
+              color: #969ba6;
+            }
+          }
+        }
+        .show-hide-btn {
+          width: 50px;
+          background: #2f3137;
+          color: #3d6aff;
+          position: absolute;
+          top: 0;
+          right: 20px;
+          bottom: 0;
         }
       }
+
       .login-title {
         text-align: center;
         color: #e3e5e8;

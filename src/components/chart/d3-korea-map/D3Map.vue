@@ -186,8 +186,8 @@
       // .select('.d3')
       .select(".map-wrapper")
       .append("svg")
-      .attr("width", width)
-      .attr("height", height);
+      .attr("max-width", "1000px")
+      .attr("width", "100%");
 
     // 배경 그리기
     const background = svg

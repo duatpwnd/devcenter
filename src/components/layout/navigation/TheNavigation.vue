@@ -64,12 +64,13 @@
     background-color: #1a1b1e;
     display: inline-block;
     width: 300px;
+    height: 100%;
     box-sizing: border-box;
     padding: 32px 16px;
     position: fixed;
     top: 80px;
     left: 0;
-    z-index: 1;
+    z-index: 2;
     .main-menu {
       color: #b8bfc4;
       li {

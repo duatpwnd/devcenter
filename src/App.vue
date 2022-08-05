@@ -1,10 +1,5 @@
 <script setup lang="ts">
-  import {
-    onMounted,
-    getCurrentInstance,
-    computed,
-    watch,
-  } from "@vue/runtime-core";
+  import { computed } from "@vue/runtime-core";
   import Header from "@/components/layout/header/TheHeader.vue";
   import Footer from "@/components/layout/footer/TheFooter.vue";
   import Navigation from "@/components/layout/navigation/TheNavigation.vue";
