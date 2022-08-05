@@ -35,10 +35,10 @@
       />
     </router-link>
     <router-link to="/dashboard" class="dashboard-link">대시보드</router-link>
-    <router-link to="/questions" class="faq-link">문의하기</router-link>
+    <router-link to="/help" class="faq-link">문의하기</router-link>
   </header>
   <mq-responsive :target="breakPoint">
-    <Navigation v-if="routeName != 'signIn'" />
+    <Navigation v-if="routeName != 'signIn' && routeName != 'help'" />
   </mq-responsive>
 </template>
 <style scoped lang="scss">
