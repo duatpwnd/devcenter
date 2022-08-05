@@ -43,21 +43,7 @@
                   >
                 </td>
               </tr>
-              <tr>
-                <td class="version">2.1.3</td>
-                <td>2022.6.29</td>
-                <td>* 버그 수정</td>
-              </tr>
-              <tr>
-                <td class="version">2.1.4</td>
-                <td>2022.6.29</td>
-                <td>* 버그 수정</td>
-              </tr>
-              <tr>
-                <td class="version">2.1.5</td>
-                <td>2022.6.29</td>
-                <td>* 버그 수정</td>
-              </tr>
+         
             </tbody>
           </table>`);
         },

@@ -69,17 +69,6 @@
     <section class="version-list-section">
       <h2 class="h2-title">버전 다운로드</h2>
       <div class="version-list">
-        <input
-          type="text"
-          v-if="isModify"
-          value="1.1.1 GetTaxInvoiceScrapRequestURL"
-        />
-        <div v-else>
-          <span class="version-name">2.1.0 랩코드 프로그램 </span>
-          <a href="/Labcode Setup 2.1.0.exe" class="download-link" download
-            ><svg-icon :fa-icon="faDownload"></svg-icon>
-          </a>
-        </div>
         <p class="guide-message">
           <svg-icon
             class="exclaim-icon"
@@ -101,17 +90,38 @@
             </thead>
             <tbody>
               <tr>
-                <td class="version">2.1.0</td>
+                <td class="version">
+                  <a
+                    href="/Labcode Setup 2.1.0.exe"
+                    class="download-link"
+                    download
+                    >2.1.0
+                  </a>
+                </td>
                 <td>2022.3.29</td>
                 <td>* 버그 수정</td>
               </tr>
               <tr>
-                <td class="version">2.1.1</td>
+                <td class="version">
+                  <a
+                    href="/Labcode Setup 2.1.0.exe"
+                    class="download-link"
+                    download
+                    >2.1.1
+                  </a>
+                </td>
                 <td>2022.4.30</td>
                 <td>* 버그 수정</td>
               </tr>
               <tr>
-                <td class="version">2.1.2</td>
+                <td class="version">
+                  <a
+                    href="/Labcode Setup 2.1.0.exe"
+                    class="download-link"
+                    download
+                    >2.1.2
+                  </a>
+                </td>
                 <td>2022.6.29</td>
                 <td>
                   <a
@@ -120,21 +130,6 @@
                     >* 버그 수정</a
                   >
                 </td>
-              </tr>
-              <tr>
-                <td class="version">2.1.3</td>
-                <td>2022.6.31</td>
-                <td>* 버그 수정</td>
-              </tr>
-              <tr>
-                <td class="version">2.1.4</td>
-                <td>2022.7.12</td>
-                <td>* 버그 수정</td>
-              </tr>
-              <tr>
-                <td class="version">2.1.5</td>
-                <td>2022.7.17</td>
-                <td>* 버그 수정</td>
               </tr>
             </tbody>
           </table>

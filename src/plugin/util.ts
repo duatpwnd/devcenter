@@ -6,6 +6,7 @@ const dbStore = computed(() => store.state.dbStore.db);
 export default {
   install: (app: { [key: string]: any }, options: any) => {
     // base64를 파일객체로 바꿔주는 함수
+
     app.config.globalProperties.$getFileObject = (
       dataurl: string,
       name: string

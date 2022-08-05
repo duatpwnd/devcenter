@@ -1,15 +1,25 @@
 <script setup lang="ts">
   import { onMounted, getCurrentInstance, ref } from "@vue/runtime-core";
+  const defaultCategory = ref(1);
   const isLabcodeShow = ref(false);
   const isSdkShow = ref(true);
   const isfaqShow = ref(false);
+  defaultCategory;
 </script>
 <template>
   <nav>
     <ul class="main-menu">
       <li>
         <strong
-          @click="isLabcodeShow = !isLabcodeShow"
+          @click="
+            isLabcodeShow = !isLabcodeShow;
+            defaultCategory = 0;
+          "
+          :style="[
+            defaultCategory == 0
+              ? { backgroundColor: '#3d6aff', color: '#f6f7f8' }
+              : { backgroundColor: 'transparent' },
+          ]"
           :class="{
             toggleActive: isLabcodeShow,
           }"
@@ -25,7 +35,15 @@
       </li>
       <li>
         <strong
-          @click="isSdkShow = !isSdkShow"
+          @click="
+            isSdkShow = !isSdkShow;
+            defaultCategory = 1;
+          "
+          :style="[
+            defaultCategory == 1
+              ? { backgroundColor: '#3d6aff', color: '#f6f7f8' }
+              : { backgroundColor: 'transparent' },
+          ]"
           :class="{
             toggleActive: isSdkShow,
           }"
@@ -84,9 +102,8 @@
             center right 16px / 16px 16px;
         }
         .toggleActive {
-          background: url("@/assets/images/active_arrow_top.svg") #3d6aff
-            no-repeat center right 16px / 16px 16px;
-          color: #f6f7f8;
+          background: url("@/assets/images/active_arrow_top.svg") no-repeat
+            center right 16px / 16px 16px;
         }
 
         a {
