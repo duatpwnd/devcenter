@@ -6,5 +6,9 @@
     console.log("onmounted");
   });
 </script>
-<template></template>
+<template>
+  <main>
+    <span :style="{ color: 'red' }">문의히스토리</span>
+  </main>
+</template>
 <style scoped lang="scss"></style>

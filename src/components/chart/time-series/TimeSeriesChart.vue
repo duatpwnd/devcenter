@@ -17,8 +17,8 @@
   const layout = {
     dragmode: "pan",
     height: 700,
-    plot_bgcolor: "rgb(22, 26, 30)",
-    paper_bgcolor: "rgb(22, 26, 30)",
+    plot_bgcolor: "#1a1b1e",
+    paper_bgcolor: "#1a1b1e",
     title: {
       text: "회사별 스캔 다운로드 횟 수",
       font: {

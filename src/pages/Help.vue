@@ -1,5 +1,15 @@
 <script setup lang="ts">
-  import { onMounted, ref, getCurrentInstance } from "@vue/runtime-core";
+  import {
+    onMounted,
+    ref,
+    getCurrentInstance,
+    KeepAlive,
+  } from "@vue/runtime-core";
+  import Faq from "@/components/help/Faq.vue";
+  import ContactHistory from "@/components/help/ContactHistory.vue";
+  import MyInquires from "@/components/help/MyInquires.vue";
+  const activeTab = ref(0);
+  const currentComp = ref(Faq);
   const globalProperties =
     getCurrentInstance()?.appContext.config.globalProperties;
   onMounted(() => {
@@ -15,16 +25,48 @@
     </strong>
     <router-link to="" class="write-link">의견 쓰기</router-link>
   </aside>
-  <div class="lnb-menu">
-    <router-link to="/help/faq">FAQ</router-link>
-    <router-link class="history-link" to="/help/contactHistory"
-      >문의 히스토리</router-link
-    >
-    <router-link to="/help/myInquires">내 문의</router-link>
+  <div class="contents">
+    <div class="lnb-menu">
+      <button
+        :class="{ active: activeTab == 0 }"
+        @click="
+          currentComp = Faq;
+          activeTab = 0;
+        "
+      >
+        FAQ
+      </button>
+      <button
+        :class="[{ active: activeTab == 1 }, 'history-link']"
+        @click="
+          currentComp = ContactHistory;
+          activeTab = 1;
+        "
+      >
+        문의 히스토리
+      </button>
+      <button
+        :class="{ active: activeTab == 2 }"
+        @click="
+          currentComp = MyInquires;
+          activeTab = 2;
+        "
+      >
+        내 문의
+      </button>
+    </div>
+    <keep-alive>
+      <component :is="currentComp"></component>
+    </keep-alive>
   </div>
-  <router-view />
 </template>
 <style scoped lang="scss">
+  .contents {
+    margin-left: 450px;
+    padding: 187px 140px;
+    width: calc(100% - 450px);
+    box-sizing: border-box;
+  }
   aside {
     width: 450px;
     background-color: #1a1b1e;
@@ -71,8 +113,8 @@
     }
   }
   .lnb-menu {
-    margin-left: 450px;
-    a {
+    margin-bottom: 40px;
+    button {
       background: #2f3137;
       border-radius: 40px;
       color: #757b8a;
@@ -84,7 +126,7 @@
     .history-link {
       margin: 0 16px;
     }
-    .router-link-active {
+    button.active {
       color: #ffffff;
       background: #3d6aff;
     }

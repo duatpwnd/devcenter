@@ -41,7 +41,6 @@
 </template>
 <style scoped lang="scss">
   main {
-    background: rgb(22, 26, 30);
     .korea-map-wrapper {
       max-width: 640px;
       margin: 0 auto;

@@ -18,14 +18,19 @@
       laptop	1370
       desktop	1906
   -->
-  <router-view :class="[mq.current, routeName]" />
+  <router-view :class="[mq.current, routeName]" v-slot="{ Component }">
+    <keep-alive>
+      <component :is="Component" />
+    </keep-alive>
+  </router-view>
   <Footer />
 </template>
 
 <style lang="scss">
-  main {
+  main.dashboard,
+  main.intro,
+  main.docs {
     position: relative;
-    background: #1a1b1e;
     vertical-align: top;
     display: inline-block;
     margin-left: 300px;

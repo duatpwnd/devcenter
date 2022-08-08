@@ -35,7 +35,7 @@
       />
     </router-link>
     <router-link to="/dashboard" class="dashboard-link">대시보드</router-link>
-    <router-link to="/help" class="faq-link">문의하기</router-link>
+    <router-link to="/help/faq" class="faq-link">문의하기</router-link>
   </header>
   <mq-responsive :target="breakPoint">
     <Navigation v-if="routeName != 'signIn' && routeName != 'help'" />
@@ -49,6 +49,7 @@
     left: 0;
     z-index: 21;
     height: 80px;
+    border-bottom: 1px solid #2f3137;
     background-color: #1a1b1e;
     .dashboard-link,
     .faq-link {
@@ -56,9 +57,9 @@
       color: #b8bfc4;
       margin-right: 40px;
     }
-    .router-link-active {
-      color: #7091ff;
-    }
+    // .router-link-active {
+    //   color: #7091ff;
+    // }
     .menu-ico {
       color: #ccc;
       vertical-align: middle;
