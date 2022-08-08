@@ -13,7 +13,6 @@
 <template>
   <main>
     <dl>
-      <Bar />
       <List />
       <List />
       <List />

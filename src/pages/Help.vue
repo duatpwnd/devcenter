@@ -8,8 +8,10 @@
   import Faq from "@/components/help/Faq.vue";
   import ContactHistory from "@/components/help/ContactHistory.vue";
   import MyInquires from "@/components/help/MyInquires.vue";
+  import { useMq } from "vue3-mq";
   const activeTab = ref(0);
   const currentComp = ref(Faq);
+  const mq = useMq();
   const globalProperties =
     getCurrentInstance()?.appContext.config.globalProperties;
   const scrollRight = () => {
@@ -18,15 +20,17 @@
 </script>
 <template>
   <button @click="scrollRight" class="scroll-top-btn"></button>
-  <aside>
-    <strong class="guide1">궁금한점이<br />있으신가요?</strong>
-    <p class="guide3">자세한 내용은 아래 FAQ를 참고해주세요.</p>
-    <strong class="guide2">
-      좋은 아이디어/어려운 점<br />있다면 저희에게<br />알려주세요.
-    </strong>
-    <router-link to="" class="write-link">의견 쓰기</router-link>
-  </aside>
-  <div class="contents">
+  <mq-responsive target="laptop+">
+    <aside>
+      <strong class="guide1">궁금한점이<br />있으신가요?</strong>
+      <p class="guide3">자세한 내용은 아래 FAQ를 참고해주세요.</p>
+      <strong class="guide2">
+        좋은 아이디어/어려운 점<br />있다면 저희에게<br />알려주세요.
+      </strong>
+      <router-link to="" class="write-link">의견 쓰기</router-link>
+    </aside>
+  </mq-responsive>
+  <div :class="[mq.current, 'contents']">
     <div class="lnb-menu">
       <button
         :class="{ active: activeTab == 0 }"
@@ -77,6 +81,12 @@
     padding: 187px 80px;
     width: calc(100% - 450px);
     box-sizing: border-box;
+  }
+  .contents.tablet,
+  .contents.phone {
+    padding: 187px 40px;
+    margin-left: 0;
+    width: 100%;
   }
   aside {
     width: 450px;
