@@ -1,6 +1,8 @@
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import { fileURLToPath, URL } from "url";
+import tsConfigPaths from "vite-tsconfig-paths";
+import vueJsx from "@vitejs/plugin-vue-jsx";
 // https://vitejs.dev/config/
 export default defineConfig({
   resolve: {
@@ -8,5 +10,5 @@ export default defineConfig({
       "@": fileURLToPath(new URL("./src", import.meta.url)),
     },
   },
-  plugins: [vue()],
+  plugins: [vue(), tsConfigPaths(), vueJsx()],
 });
