@@ -12,11 +12,12 @@
   const currentComp = ref(Faq);
   const globalProperties =
     getCurrentInstance()?.appContext.config.globalProperties;
-  onMounted(() => {
-    console.log("onmounted");
-  });
+  const scrollRight = () => {
+    document.body.scrollIntoView({ behavior: "smooth" });
+  };
 </script>
 <template>
+  <button @click="scrollRight" class="scroll-top-btn"></button>
   <aside>
     <strong class="guide1">궁금한점이<br />있으신가요?</strong>
     <p class="guide3">자세한 내용은 아래 FAQ를 참고해주세요.</p>
@@ -61,9 +62,19 @@
   </div>
 </template>
 <style scoped lang="scss">
+  .scroll-top-btn {
+    width: 48px;
+    height: 48px;
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    background: url("@/assets/images/scroll_top_ico.svg") no-repeat center
+      center / 48px 48px;
+    z-index: 1;
+  }
   .contents {
     margin-left: 450px;
-    padding: 187px 140px;
+    padding: 187px 80px;
     width: calc(100% - 450px);
     box-sizing: border-box;
   }
