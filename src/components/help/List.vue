@@ -1,6 +1,7 @@
 <script setup lang="ts">
   import {
     onMounted,
+    onActivated,
     ref,
     getCurrentInstance,
     defineProps,
@@ -10,13 +11,13 @@
   const isActive = ref(true);
   const ddRef = ref(null);
   const slideRef = ref(null);
-  window.addEventListener("resize", () => {
+  const setSlideHeight = () => {
     (slideRef.value as unknown as { [key: string]: any }).$el.style.height =
       (ddRef.value as unknown as HTMLElement).clientHeight + "px";
-  });
-  onMounted(() => {
-    (slideRef.value as unknown as { [key: string]: any }).$el.style.height =
-      (ddRef.value as unknown as HTMLElement).clientHeight + "px";
+  };
+  window.addEventListener("resize", setSlideHeight);
+  onActivated(() => {
+    setSlideHeight();
   });
 </script>
 <template>
