@@ -5,8 +5,36 @@ const globalProperties =
 const dbStore = computed(() => store.state.dbStore.db);
 export default {
   install: (app: { [key: string]: any }, options: any) => {
+    app.config.globalProperties.$formatSizeUnits = (bytes: number) => {
+      let result;
+      if (bytes >= 1073741824) {
+        result = (bytes / 1073741824).toFixed(0) + " GB";
+      } else if (bytes >= 1048576) {
+        result = (bytes / 1048576).toFixed(0) + " MB";
+      } else if (bytes >= 1024) {
+        result = (bytes / 1024).toFixed(0) + " KB";
+      } else if (bytes > 1) {
+        result = bytes + " bytes";
+      } else if (bytes == 1) {
+        result = bytes + " byte";
+      } else {
+        result = "0 bytes";
+      }
+      return result;
+    };
+    app.config.globalProperties.$getBase64 = (fileObj: File) => {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(fileObj);
+        reader.onload = () => {
+          resolve(reader.result);
+        };
+        reader.onerror = function (error) {
+          console.log("Error: ", error);
+        };
+      });
+    };
     // base64를 파일객체로 바꿔주는 함수
-
     app.config.globalProperties.$getFileObject = (
       dataurl: string,
       name: string

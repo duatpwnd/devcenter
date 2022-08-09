@@ -8,6 +8,7 @@
   import Faq from "@/components/help/Faq.vue";
   import ContactHistory from "@/components/help/ContactHistory.vue";
   import MyInquires from "@/components/help/MyInquires.vue";
+  import Inquire from "@/components/help/Inquire.vue";
   import { useMq } from "vue3-mq";
   const activeTab = ref(0);
   const currentComp = ref(Faq);
@@ -19,6 +20,7 @@
   };
 </script>
 <template>
+  <Inquire />
   <button @click="scrollRight" class="scroll-top-btn"></button>
   <mq-responsive target="laptop+">
     <aside>

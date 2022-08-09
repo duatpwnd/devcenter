@@ -78,6 +78,8 @@ button {
   cursor: pointer;
 }
 textarea {
+  border: 0;
+  resize: none;
   outline: none;
   -webkit-appearance: none;
 }
@@ -95,7 +97,9 @@ input:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 1000px #f2f4f5 inset !important;
 }
 /* select 화살표 없애기 */
-
+input[type="file"] {
+  display: none;
+}
 select {
   outline: none;
   background: white;
