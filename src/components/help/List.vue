@@ -14,6 +14,10 @@
     (slideRef.value as unknown as { [key: string]: any }).$el.style.height =
       (ddRef.value as unknown as HTMLElement).clientHeight + "px";
   });
+  onMounted(() => {
+    (slideRef.value as unknown as { [key: string]: any }).$el.style.height =
+      (ddRef.value as unknown as HTMLElement).clientHeight + "px";
+  });
 </script>
 <template>
   <div class="row">

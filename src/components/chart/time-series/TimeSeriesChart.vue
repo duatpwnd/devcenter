@@ -140,36 +140,12 @@
 </script>
 <template>
   <div class="time-series-wrap">
-    <div class="select-box-wrap">
-      <BaseSelectBox
-        @update:value="changeCompany"
-        :options="companyList"
-        :style="{
-          button: {
-            padding: '14px 28.5px 14px 20px',
-          },
-          ul: {
-            padding: '8px',
-          },
-          li: {
-            height: '48px',
-            padding: '12px',
-          },
-        }"
-      />
-    </div>
+    <BaseSelectBox @update:value="changeCompany" :options="companyList" />
     <div id="timeSeriesChart"></div>
   </div>
 </template>
 <style scoped lang="scss">
   .time-series-wrap {
     position: relative;
-    .select-box-wrap {
-      width: 200px;
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 1;
-    }
   }
 </style>
