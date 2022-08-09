@@ -50,71 +50,76 @@ textarea {
 }
 body{
   background-color: #1a1b1e;
-}
-ul {
-  li {
-    list-style: none;
+  table{
+    border-collapse: collapse;
   }
+  ul {
+    li {
+      list-style: none;
+    }
+  }
+  dt {
+    font-weight: 700;
+  }
+  a {
+    text-decoration: none;
+    color: black;
+    display: inline-block;
+  }
+  span {
+    display: inline-block;
+  }
+  img {
+    vertical-align: middle;
+  }
+  button {
+    background: white;
+    outline: none;
+    border: 0;
+    cursor: pointer;
+  }
+  textarea {
+    border: 0;
+    resize: none;
+    outline: none;
+    -webkit-appearance: none;
+  }
+  /* 아이폰 input 둥근테두리 그림자 제거 */
+  
+  input {
+    cursor: pointer;
+    -webkit-border-radius: 0;
+    outline: none;
+  }
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 1000px #f2f4f5 inset !important;
+  }
+  /* select 화살표 없애기 */
+  input[type="file"] {
+    display: none;
+  }
+  select {
+    outline: none;
+    background: white;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0;
+    &::-ms-expand{
+      display: none;
+    }
+  }
+  fieldset {
+    border: 0;
+  }
+  legend {
+    display: none;
+  }
+  
 }
 
-dt {
-  font-weight: 700;
-}
-a {
-  text-decoration: none;
-  color: black;
-  display: inline-block;
-}
-span {
-  display: inline-block;
-}
-img {
-  vertical-align: middle;
-}
-button {
-  background: white;
-  outline: none;
-  border: 0;
-  cursor: pointer;
-}
-textarea {
-  border: 0;
-  resize: none;
-  outline: none;
-  -webkit-appearance: none;
-}
-/* 아이폰 input 둥근테두리 그림자 제거 */
 
-input {
-  cursor: pointer;
-  -webkit-border-radius: 0;
-  outline: none;
-}
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-input:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0 1000px #f2f4f5 inset !important;
-}
-/* select 화살표 없애기 */
-input[type="file"] {
-  display: none;
-}
-select {
-  outline: none;
-  background: white;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  border-radius: 0;
-}
 
-select::-ms-expand {
-  display: none;
-}
-fieldset {
-  border: 0;
-}
-legend {
-  display: none;
-}

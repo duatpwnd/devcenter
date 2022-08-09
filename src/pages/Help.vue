@@ -12,6 +12,7 @@
   import { useMq } from "vue3-mq";
   const activeTab = ref(0);
   const currentComp = ref(Faq);
+  const isActiveInquireModal = ref(false);
   const mq = useMq();
   const globalProperties =
     getCurrentInstance()?.appContext.config.globalProperties;
@@ -20,7 +21,10 @@
   };
 </script>
 <template>
-  <Inquire />
+  <Inquire
+    v-if="isActiveInquireModal"
+    @close-Inquire-modal="isActiveInquireModal = false"
+  />
   <button @click="scrollRight" class="scroll-top-btn"></button>
   <mq-responsive target="laptop+">
     <aside>
@@ -55,7 +59,7 @@
       <button
         :class="{ active: activeTab == 2 }"
         @click="
-          currentComp = MyInquires;
+          isActiveInquireModal = true;
           activeTab = 2;
         "
       >

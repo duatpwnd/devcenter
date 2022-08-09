@@ -68,7 +68,7 @@
     position: sticky;
     top: 0;
     left: 0;
-    z-index: 21;
+    z-index: 1;
     height: 80px;
     border-bottom: 1px solid #2f3137;
     background-color: #1a1b1e;

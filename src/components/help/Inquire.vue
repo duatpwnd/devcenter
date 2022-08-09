@@ -2,12 +2,14 @@
   import {
     onMounted,
     ref,
+    defineEmits,
     getCurrentInstance,
     reactive,
   } from "@vue/runtime-core";
   import BaseSelectBox from "../common/BaseSelectBox.vue";
   const globalProperties =
     getCurrentInstance()?.appContext.config.globalProperties;
+  const emit = defineEmits(["close-Inquire-modal"]);
   const formatSizeUnits = globalProperties?.$formatSizeUnits;
   const fileInfo = ref<{ [key: string]: any } | null>(null);
   const attach = (e: { [key: string]: any }) => {
@@ -67,7 +69,7 @@
       </div>
     </div>
     <div class="button-wrap">
-      <button>취소</button>
+      <button @click="emit('close-Inquire-modal')">취소</button>
       <button>새 의견 쓰기</button>
     </div>
   </div>
