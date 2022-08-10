@@ -35,6 +35,7 @@
       <li
         v-for="(option, index) in options"
         :class="{ active: selected == option.name }"
+        :key="index"
         :style="style?.li"
         @click="select(option.name)"
       >
@@ -56,6 +57,7 @@
       border-radius: 8px;
       padding: 0px 20px 0px 20px;
       line-height: 3;
+      width: 100%;
       box-sizing: border-box;
       color: #e3e5e8;
       .arrow-ico {

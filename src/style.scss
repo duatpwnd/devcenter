@@ -89,7 +89,9 @@ body{
   input {
     cursor: pointer;
     -webkit-border-radius: 0;
+    -webkit-appearance: none;
     outline: none;
+    border:0;
   }
   input:-webkit-autofill,
   input:-webkit-autofill:hover,
@@ -117,6 +119,9 @@ body{
   }
   legend {
     display: none;
+  }
+  progress {
+   appearance: none;
   }
   
 }

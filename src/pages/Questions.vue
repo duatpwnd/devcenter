@@ -136,7 +136,6 @@
       border: 1px solid #d8dde6;
       input {
         width: calc(100% - 50px);
-        border: 0;
         padding: 0 10px;
         box-sizing: border-box;
       }
