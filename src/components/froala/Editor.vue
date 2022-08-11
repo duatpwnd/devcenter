@@ -73,25 +73,26 @@
 <template>
   <div id="editor" height="500px"></div>
 </template>
-<style scoped lang="scss">
-  @import "froala-editor/css/froala_editor.pkgd.min.css";
-  th {
-    text-align: center;
-    padding: 14px 20px;
-    background-color: #f5f6f9;
-  }
-  td {
-    border: 1px solid #e2e4ee;
-    padding: 14px 20px;
-    text-align: center;
-  }
-  .version {
-    color: #2d50ff;
-  }
-  table {
+<style lang="scss">
+  @import "./editor.scss";
+  .table {
     width: 100%;
     box-sizing: border-box;
     border-collapse: collapse;
     border: 1px solid #e2e4ee;
+
+    th {
+      text-align: center;
+      padding: 14px 20px;
+      background-color: #f5f6f9;
+    }
+    td {
+      border: 1px solid #e2e4ee;
+      padding: 14px 20px;
+      text-align: center;
+    }
+    .version {
+      color: #2d50ff;
+    }
   }
 </style>

@@ -48,7 +48,7 @@
         bottom: 0;
         -webkit-transition: 0.4s;
         transition: 0.4s;
-        background: #3d6aff;
+        background: #3f424a;
       }
       .slider.round {
         border-radius: 34px;
@@ -61,15 +61,14 @@
         content: "";
         height: 24px;
         width: 24px;
-        left: 2px;
-        top: 0;
+        left: 0px;
+        top: 0px;
         bottom: 0;
         margin: auto;
         background: white;
 
         -webkit-transition: 0.4s;
         transition: 0.4s;
-        box-shadow: 1px 1px 1px 0px white;
       }
       input {
         display: none;
@@ -79,10 +78,9 @@
       }
       input:checked + .slider::before {
         background-color: white;
-        -webkit-transform: translateX(50px);
-        -ms-transform: translateX(50px);
-        transform: translateX(22px);
-        box-shadow: 1px 1px 1px 0px white;
+        // -webkit-transform: translateX(50px);
+        // -ms-transform: translateX(50px);
+        transform: translateX(24px);
       }
     }
   }

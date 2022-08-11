@@ -8,9 +8,9 @@ export default {
     app.config.globalProperties.$formatSizeUnits = (bytes: number) => {
       let result;
       if (bytes >= 1073741824) {
-        result = (bytes / 1073741824).toFixed(0) + " GB";
+        result = (bytes / 1073741824).toFixed(1) + " GB";
       } else if (bytes >= 1048576) {
-        result = (bytes / 1048576).toFixed(0) + " MB";
+        result = (bytes / 1048576).toFixed(1) + " MB";
       } else if (bytes >= 1024) {
         result = (bytes / 1024).toFixed(0) + " KB";
       } else if (bytes > 1) {

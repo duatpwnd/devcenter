@@ -47,13 +47,28 @@
           :class="{
             toggleActive: isSdkShow,
           }"
-          >SDK 다운로드</strong
+          >SDK</strong
         >
         <slide-up-down v-model="isSdkShow" :duration="300">
           <ul class="sub-menu">
             <li>
-              <router-link to="/docs"> 버전별 다운로드 </router-link>
+              <router-link to="/docs"> SDK를 이용하기전에 </router-link>
             </li>
+            <li>
+              <router-link to="/docs"> 스캔SDK </router-link>
+              <ul>
+                <li>안드로이드</li>
+                <li>ios</li>
+              </ul>
+            </li>
+            <li>
+              <router-link to="/docs"> ETC </router-link>
+              <ul>
+                <li>안드로이드</li>
+                <li>ios</li>
+              </ul>
+            </li>
+            <li><router-link to="/docs">SDK 다운로드 </router-link></li>
           </ul>
         </slide-up-down>
       </li>

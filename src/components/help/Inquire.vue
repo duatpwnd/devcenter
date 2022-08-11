@@ -1,6 +1,7 @@
 <script setup lang="ts">
+  import { file } from "@babel/types";
   import {
-    onMounted,
+    computed,
     ref,
     defineEmits,
     getCurrentInstance,
@@ -10,15 +11,51 @@
     getCurrentInstance()?.appContext.config.globalProperties;
   const emit = defineEmits(["close-Inquire-modal"]);
   const isAgree = ref(true);
-  const disclosure = ref(true);
+  const companyDisclosureStatus = ref(false);
+  const postDisclosureStatus = ref(true);
   const formatSizeUnits = globalProperties?.$formatSizeUnits;
-  const fileInfo = ref<{ [key: string]: any } | null>(null);
+  const fileInfo = ref<{ [key: string]: any }[]>([]);
+  const isFileCountExceed = ref(false);
+  const maxFileSize = 100000;
+  const form = reactive({
+    title: "",
+    contents: "",
+  });
+  const imageTotalSize = computed(() => {
+    const byte = fileInfo.value.reduce(
+      (acc: number, curr: { [key: string]: any }) => {
+        return acc + curr.size;
+      },
+      0
+    );
+    const formatSize = formatSizeUnits(byte);
+    return { byte, formatSize };
+  });
+  const validCheck = computed(() => {
+    return (
+      form.title.trim().length > 0 &&
+      form.contents.trim().length > 0 &&
+      imageTotalSize.value.byte < maxFileSize
+    );
+  });
+  const deleteFile = (index: number) => {
+    fileInfo.value.splice(index, 1);
+    isFileCountExceed.value = false;
+  };
   const attach = (e: { [key: string]: any }) => {
     const fileObj = e.target.files[0];
-    fileInfo.value = {
+
+    const getBlobUrl = URL.createObjectURL(fileObj);
+    fileInfo.value.push({
       name: fileObj.name,
-      size: formatSizeUnits(fileObj.size),
-    };
+      size: fileObj.size,
+      formatSize: formatSizeUnits(fileObj.size),
+      url: getBlobUrl,
+    });
+    if (fileInfo.value.length > 5) {
+      isFileCountExceed.value = true;
+      fileInfo.value.pop();
+    }
   };
 </script>
 <template>
@@ -37,11 +74,16 @@
       </div>
       <h2 class="h2-title">의견 작성</h2>
       <div class="row">
-        <label class="dt">제목</label>
-        <input type="text" placeholder="제목 입력(50자 이내)" />
+        <label class="dt required">제목</label>
+        <input
+          type="text"
+          @input="(e:any)=>{form.title = e.target.value}"
+          maxlength="50"
+          placeholder="제목 입력(50자 이내)"
+        />
       </div>
       <div class="row">
-        <label class="dt">의견상세</label>
+        <label class="dt required">의견상세</label>
         <BaseSelectBox
           :options="[{ name: 'Android(SDK)' }]"
           :style="{
@@ -58,14 +100,19 @@
         />
       </div>
       <div class="row">
-        <label class="dt">내용</label>
-        <textarea placeholder="내용 입력"></textarea>
+        <label class="dt required">내용</label>
+        <textarea
+          @input="(e:any)=>{form.contents = e.target.value}"
+          placeholder="내용 입력"
+        ></textarea>
       </div>
       <div class="row">
         <label class="dt">이미지 첨부</label>
         <label className="input-file" for="test" @change="attach">
           <span class="file-placeholder">이미지 첨부하기</span>
-          <span className="number-file">2/<span class="total">5</span></span>
+          <span className="number-file"
+            >{{ fileInfo.length }}/<span class="total">5</span></span
+          >
           <input
             type="file"
             id="test"
@@ -73,14 +120,34 @@
             accept="image/png, image/jpeg"
           />
         </label>
-        <div class="attachments" v-if="fileInfo">
-          <span class="file-name"> {{ fileInfo?.name }} </span>
-          <span class="file-size"> {{ fileInfo?.size }} </span>
-          <button class="delete-btn"></button>
+        <div class="attachments" v-for="(list, index) in fileInfo" :key="index">
+          <span class="file-name"> {{ list.name }} </span>
+          <span class="file-size"> {{ list.formatSize }} </span>
+          <button class="delete-btn" @click="deleteFile(index)"></button>
+        </div>
+        <div class="file-image-wrap" v-if="fileInfo.length > 0">
+          <div
+            class="file-image-list"
+            v-for="(list, index) in fileInfo"
+            :key="index"
+          >
+            <img :src="list.url" class="file-image" />
+            <button class="delete-btn" @click="deleteFile(index)"></button>
+          </div>
         </div>
         <div class="progress-area">
-          <progress id="file" max="100" value="20">70%</progress>
-          <span class="size">{{ fileInfo?.size }}</span>
+          <progress
+            id="file"
+            :max="maxFileSize"
+            :value="imageTotalSize.byte"
+          ></progress>
+          <span class="size">{{ imageTotalSize.formatSize }}</span>
+          <p v-if="imageTotalSize.byte > maxFileSize" class="alert-msg">
+            첨부 파일은 최대 20MB까지 등록 가능합니다.
+          </p>
+          <p v-if="isFileCountExceed" class="alert-msg">
+            첨부 파일은 최대 5까지 등록 가능합니다.
+          </p>
           <p class="msg">
             첨부 파일은 최대 5개/ 20MB까지 등록 가능합니다.<br />
             첨부 가능 확장자명 : JPG, PNG
@@ -94,7 +161,16 @@
             내가 작성한 글에서 나의 회사, 직급 공개 여부를 설정합니다.
           </p>
         </div>
-        <BaseSwitcherButton v-model="disclosure" fieldId="test" />
+        <BaseSwitcherButton v-model="companyDisclosureStatus" fieldId="test" />
+      </div>
+      <div class="row row-border row-flex">
+        <div>
+          <strong>글 공개 여부</strong>
+          <p class="msg">
+            내가 작성한 글을 모든 사람들에게 공개 / 비공개 설정합니다.
+          </p>
+        </div>
+        <BaseSwitcherButton v-model="postDisclosureStatus" fieldId="test" />
       </div>
       <div class="row row-border">
         <strong>개인정보 수집• 이용 안내 (필수)</strong>
@@ -113,7 +189,7 @@
       </div>
       <div class="button-wrap">
         <button @click="emit('close-Inquire-modal')">취소</button>
-        <button>새 의견 쓰기</button>
+        <button :class="{ active: validCheck }">새 의견 쓰기</button>
       </div>
     </div>
   </div>
@@ -237,6 +313,35 @@
               20px 20px;
           }
         }
+        .file-image-wrap {
+          margin-top: 20px;
+          display: flex;
+          justify-content: flex-start;
+          column-gap: 12px;
+          width: calc(100% - 156px);
+          position: relative;
+          left: 156px;
+
+          .file-image-list {
+            position: relative;
+            .delete-btn {
+              position: absolute;
+              top: 6px;
+              right: 6px;
+              width: 20px;
+              height: 20px;
+              background: url("@/assets/images/file_delete_ico.svg") no-repeat
+                center / 20px 20px;
+            }
+            .file-image {
+              width: 92px;
+              height: 92px;
+              border-radius: 8px;
+              object-fit: cover;
+            }
+          }
+        }
+
         .progress-area {
           margin-top: 20px;
           width: calc(100% - 156px);
@@ -256,9 +361,14 @@
             border-radius: 4px;
           }
           .size {
-            width: 52px;
-            margin-left: 32px;
+            text-align: right;
+            width: 84px;
             color: #7091ff;
+          }
+          .alert-msg {
+            margin-top: 8px;
+            color: #a24235;
+            font-size: 12px;
           }
           .msg {
             margin-top: 16px;
@@ -278,18 +388,18 @@
           vertical-align: middle;
           width: 156px;
           display: inline-block;
-          &:not(:last-child) {
-            &:after {
-              content: "필수";
-              padding: 4px 6px;
-              margin-left: 8px;
-              background: rgba(188, 54, 35, 0.15);
-              border-radius: 2px;
-              letter-spacing: -0.3px;
-              font-size: 10px;
-              color: #bc3623;
-              vertical-align: middle;
-            }
+        }
+        .dt.required {
+          &:after {
+            content: "필수";
+            padding: 4px 6px;
+            margin-left: 8px;
+            background: rgba(188, 54, 35, 0.15);
+            border-radius: 2px;
+            letter-spacing: -0.3px;
+            font-size: 10px;
+            color: #bc3623;
+            vertical-align: middle;
           }
         }
         textarea {
@@ -300,6 +410,7 @@
           background: #3f424a;
           color: #e3e5e8;
           border-radius: 8px;
+          vertical-align: middle;
           &::placeholder {
             color: #757b8a;
           }
@@ -307,7 +418,8 @@
       }
       .row-border {
         margin-top: 32px;
-        padding: 32px 0;
+        padding-top: 32px;
+        padding-left: 156px;
         border-top: 1px solid #3f424a;
         border-radius: 2px;
         .switch-btn {
@@ -320,6 +432,7 @@
           margin-top: 12px;
           font-size: 14px;
           color: #757b8a;
+          line-height: 22px;
         }
         .agree-area {
           margin-top: 16px;
@@ -329,6 +442,8 @@
 
           .container-checkbox {
             margin-right: 8px;
+            display: inline-block;
+            height: 20px;
             vertical-align: middle;
             input {
               display: none;
@@ -351,10 +466,15 @@
       .row-flex {
         display: flex;
         justify-content: space-between;
+        .msg {
+          margin-top: 6px;
+        }
       }
       .button-wrap {
         margin-top: 44px;
         text-align: right;
+        position: sticky;
+        bottom: 0;
         button {
           font-size: 18px;
           text-align: center;
@@ -365,11 +485,15 @@
           box-sizing: border-box;
           border: 1px solid #525660;
           border-radius: 8px;
-          background-color: transparent;
+          background: #2f3137;
           &:nth-child(2) {
             background: #525660;
             margin-left: 12px;
           }
+        }
+        button.active {
+          color: #ffffff;
+          background: #3d6aff;
         }
       }
     }

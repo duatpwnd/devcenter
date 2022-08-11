@@ -33,7 +33,9 @@
       <strong class="guide2">
         좋은 아이디어/어려운 점<br />있다면 저희에게<br />알려주세요.
       </strong>
-      <router-link to="" class="write-link">의견 쓰기</router-link>
+      <button to="" class="write-link" @click="isActiveInquireModal = true">
+        의견 쓰기
+      </button>
     </aside>
   </mq-responsive>
   <div :class="[mq.current, 'contents']">
@@ -56,13 +58,7 @@
       >
         문의 히스토리
       </button>
-      <button
-        :class="{ active: activeTab == 2 }"
-        @click="
-          isActiveInquireModal = true;
-          activeTab = 2;
-        "
-      >
+      <button :class="{ active: activeTab == 2 }" @click="activeTab = 2">
         내 문의
       </button>
     </div>
