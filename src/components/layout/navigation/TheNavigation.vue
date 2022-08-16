@@ -135,6 +135,7 @@
               position: relative;
               &::before {
                 content: "";
+                background: #3f424a;
                 background: #2d2e31;
                 width: 2px;
                 position: absolute;
