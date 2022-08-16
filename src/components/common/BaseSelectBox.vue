@@ -13,13 +13,13 @@
     isActiveSelectModal.value = false;
     emit("update:value", name);
   };
-  onMounted(() => {
-    console.log("onmounted");
-  });
 </script>
 <template>
   <div class="select-box-wrap">
-    <slot name="ico">
+    <slot
+      name="ico"
+      :eventHandler="() => (isActiveSelectModal = !isActiveSelectModal)"
+    >
       <button
         :style="style?.button"
         :class="[{ 'active-toggle': isActiveSelectModal }, 'select-btn']"

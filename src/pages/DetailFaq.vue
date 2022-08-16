@@ -9,7 +9,7 @@
     const maxByte = 1000; //최대 100바이트
     const text_val = obj.target.value; //입력한 문자
     const text_len = text_val.length; //입력한 문자수
-    let rlen = 0;
+    let rLen = 0;
     let str2 = "";
     let totalByte = 0;
     for (let i = 0; i < text_len; i++) {
@@ -23,12 +23,12 @@
         totalByte += 1;
       }
       if (totalByte <= maxByte) {
-        rlen = i + 1;
+        rLen = i + 1;
       }
     }
     currentByte.value = totalByte;
     if (totalByte > maxByte) {
-      obj.target.value = text_val.substr(0, rlen);
+      obj.target.value = text_val.substr(0, rLen);
       fn_checkByte(obj);
     }
   };
@@ -38,22 +38,10 @@
   <main>
     <div class="title-area">
       <strong class="title">기록api 텍스트 공유 질문입니다.</strong>
-      <BaseSelectBox
-        :options="options"
-        :style="{
-          span: {
-            background: 'unset',
-          },
-          button: {
-            border: 0,
-            color: 'transparent',
-            background:
-              'url(' +
-              `${moreViewIco}` +
-              ') no-repeat center right / 44px 44px',
-          },
-        }"
-      >
+      <BaseSelectBox :options="options">
+        <template #ico="scope">
+          <button class="more-view-btn" @click="scope.eventHandler"></button>
+        </template>
       </BaseSelectBox>
     </div>
     <div class="ios">IOS</div>
@@ -151,8 +139,10 @@
         font-size: 28px;
         align-self: center;
       }
+
       .select-box-wrap {
         width: 200px;
+        text-align: right;
       }
       .more-view-btn {
         width: 44px;
