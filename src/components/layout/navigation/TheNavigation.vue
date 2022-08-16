@@ -50,7 +50,7 @@
           >스냅태그 싱크</strong
         >
         <slide-up-down v-model="isSdkShow" :duration="300">
-          <ul class="sub-menu">
+          <ul class="sub-menu sync-menu">
             <li>
               <router-link to="/docs"> SDK를 이용하기전에 </router-link>
             </li>
@@ -131,7 +131,7 @@
           margin: 5px 0;
           font-size: 14px;
           position: relative;
-          .sub-menu {
+          .sync-menu {
             &::before {
               content: "";
               background: #2d2e31;
