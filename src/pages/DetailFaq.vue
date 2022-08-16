@@ -6,7 +6,7 @@
   const textAreaEl = ref(null);
   const currentByte = ref(0);
   const fn_checkByte = (obj: { [key: string]: any }) => {
-    const maxByte = 100; //최대 100바이트
+    const maxByte = 1000; //최대 100바이트
     const text_val = obj.target.value; //입력한 문자
     const text_len = text_val.length; //입력한 문자수
     let rlen = 0;
@@ -93,7 +93,10 @@
         <span class="comment">댓글<strong>0</strong></span>
         <span class="participants">참여자<strong>1</strong></span>
       </span>
-      <button @click="isActiveCommentForm = !isActiveCommentForm">
+      <button
+        @click="isActiveCommentForm = !isActiveCommentForm"
+        :class="{ active: isActiveCommentForm }"
+      >
         댓글쓰기
       </button>
     </div>
@@ -113,7 +116,7 @@
           "
         ></textarea>
         <span class="current-byte">
-          <span :style="{ color: '#7091FF' }">{{ currentByte }}</span> / 100
+          <span :style="{ color: '#7091FF' }">{{ currentByte }}</span> / 1000
         </span>
       </div>
       <div class="btn-wrap">
@@ -256,6 +259,15 @@
       button {
         color: #e3e5e8;
         background: transparent;
+        font-size: 13px;
+        border: 1px solid #2f3137;
+        border-radius: 4px;
+        padding: 10px 14px;
+      }
+      .active {
+        color: #3d6aff;
+        border: 1px solid #3d6aff;
+        border-radius: 4px;
       }
     }
     .msg {
