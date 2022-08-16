@@ -50,7 +50,7 @@
           >스냅태그 싱크</strong
         >
         <slide-up-down v-model="isSdkShow" :duration="300">
-          <ul class="sub-menu sync-menu">
+          <ul class="sub-menu">
             <li>
               <router-link to="/docs"> SDK를 이용하기전에 </router-link>
             </li>
@@ -130,18 +130,18 @@
         .slide-up-down__container {
           margin: 5px 0;
           font-size: 14px;
-          position: relative;
-          .sync-menu {
-            &::before {
-              content: "";
-              background: #2d2e31;
-              width: 2px;
-              position: absolute;
-              top: 9px;
-              left: 21px;
-              height: 280px;
-            }
+          .sub-menu {
             ul {
+              position: relative;
+              &::before {
+                content: "";
+                background: #2d2e31;
+                width: 2px;
+                position: absolute;
+                top: 0px;
+                left: 46px;
+                height: 100%;
+              }
               li {
                 a {
                   padding-left: 64px;
@@ -154,15 +154,15 @@
           }
           .router-link-active {
             color: #e3e5e8;
-            &::before {
-              content: "";
-              background: #3d6aff;
-              width: 2px;
-              position: absolute;
-              top: 9px;
-              left: 21px;
-              height: 29px;
-            }
+            // &::before {
+            //   content: "";
+            //   background: #3d6aff;
+            //   width: 2px;
+            //   position: absolute;
+            //   top: 9px;
+            //   left: 21px;
+            //   height: 29px;
+            // }
           }
         }
       }
