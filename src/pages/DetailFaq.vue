@@ -220,6 +220,7 @@
       }
       .date {
         color: #525660;
+        font-family: "Poppins";
         font-size: 12px;
         align-self: center;
       }
