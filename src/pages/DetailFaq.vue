@@ -36,6 +36,11 @@
 
 <template>
   <main>
+    <div class="category">
+      <span>문의하기</span>
+      <span class="history">문의 히스토리</span>
+      <span>문의 상세보기</span>
+    </div>
     <div class="title-area">
       <strong class="title">기록api 텍스트 공유 질문입니다.</strong>
       <BaseSelectBox :options="options">
@@ -130,9 +135,25 @@
   main {
     width: 840px;
     margin: 0 auto;
-
+    padding-top: 60px;
+    .category {
+      text-align: right;
+      color: #525660;
+      font-size: 13px;
+      .history {
+        &::after {
+          content: ">";
+          margin: 0 6px;
+        }
+        &::before {
+          margin: 0 6px;
+          content: ">";
+        }
+      }
+    }
     .title-area {
       display: flex;
+      margin-top: 60px;
       justify-content: space-between;
       .title {
         color: #e3e5e8;
