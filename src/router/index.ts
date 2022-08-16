@@ -32,23 +32,12 @@ const routes: Array<RouteRecordRaw> = [
     path: "/help",
     name: "help",
     component: () => import(/* webpackChunkName: "help" */ "@/pages/Help.vue"),
-    children: [
-      {
-        path: "faq",
-        component: () => import("@/components/help/Faq.vue"),
-        name: "faq",
-      },
-      {
-        path: "contactHistory",
-        component: () => import("@/components/help/ContactHistory.vue"),
-        name: "contactHistory",
-      },
-      {
-        path: "myInquires",
-        component: () => import("@/components/help/MyInquires.vue"),
-        name: "myInquires",
-      },
-    ],
+  },
+  {
+    path: "/help/faq/:id",
+    name: "DetailFaq",
+    component: () =>
+      import(/* webpackChunkName: "DetailFaq" */ "@/pages/DetailFaq.vue"),
   },
   {
     path: "/topics",

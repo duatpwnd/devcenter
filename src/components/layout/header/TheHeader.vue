@@ -6,7 +6,7 @@
   const globalProperties =
     getCurrentInstance()?.appContext.config.globalProperties;
   const routeName = computed(() => {
-    return useRoute().name;
+    return useRoute().path;
   });
   const isActiveUserMenu = ref(false);
   const activeMenu = ref(0);
@@ -41,8 +41,17 @@
       />
     </router-link>
     <div class="right-menu">
-      <router-link to="/dashboard" class="dashboard-link">대시보드</router-link>
-      <router-link to="/help/faq" class="faq-link">문의하기</router-link>
+      <router-link to="/dashboard" class="dashboard-link"
+        >대시보드{{
+      }}</router-link>
+      <router-link
+        to="/help"
+        :class="[
+          { 'router-link-active': routeName.startsWith('/help') },
+          'faq-link',
+        ]"
+        >문의하기</router-link
+      >
       <div class="user-wrap">
         <span class="user-id" @click="isActiveUserMenu = !isActiveUserMenu"
           >snaptag.co.kr</span
@@ -59,7 +68,9 @@
     </div>
   </header>
   <mq-responsive :target="breakPoint">
-    <Navigation v-if="routeName != 'signIn' && routeName != 'help'" />
+    <Navigation
+      v-if="routeName != 'signIn' && !routeName.startsWith('/help')"
+    />
   </mq-responsive>
 </template>
 <style scoped lang="scss">
@@ -114,9 +125,9 @@
         color: #969ba6;
         margin-right: 40px;
       }
-      // .router-link-active {
-      //   color: #7091ff;
-      // }
+      .router-link-active {
+        color: #7091ff;
+      }
     }
     .menu-ico {
       color: #ccc;

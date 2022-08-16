@@ -2,6 +2,8 @@
   import { onMounted, ref, getCurrentInstance } from "@vue/runtime-core";
   const globalProperties =
     getCurrentInstance()?.appContext.config.globalProperties;
+  const router = globalProperties?.$router;
+
   const categoryList = [
     { name: "모든 카테고리" },
     { name: "Android(SDK)" },
@@ -75,7 +77,7 @@
           <th>댓글</th>
           <th>작성일</th>
         </tr>
-        <tr>
+        <tr @click="router.push('/help/faq/1')">
           <td class="writing">
             압드로이드 랩코드 로그인 오류
             <div class="android">Android</div>

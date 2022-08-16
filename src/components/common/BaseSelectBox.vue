@@ -19,18 +19,20 @@
 </script>
 <template>
   <div class="select-box-wrap">
-    <button
-      :style="style?.button"
-      :class="[{ 'active-toggle': isActiveSelectModal }, 'select-btn']"
-      @click="isActiveSelectModal = !isActiveSelectModal"
-    >
-      {{ selected
-      }}<span
-        :style="style?.span"
-        class="arrow-ico"
-        :class="isActiveSelectModal ? 'arrow-top' : 'arrow-bottom'"
-      ></span>
-    </button>
+    <slot name="ico">
+      <button
+        :style="style?.button"
+        :class="[{ 'active-toggle': isActiveSelectModal }, 'select-btn']"
+        @click="isActiveSelectModal = !isActiveSelectModal"
+      >
+        {{ selected
+        }}<span
+          :style="style?.span"
+          class="arrow-ico"
+          :class="isActiveSelectModal ? 'arrow-top' : 'arrow-bottom'"
+        ></span>
+      </button>
+    </slot>
     <ul :style="style?.ul" class="options" v-show="isActiveSelectModal">
       <li
         v-for="(option, index) in options"
@@ -76,7 +78,7 @@
       }
     }
     .select-btn.active-toggle {
-      border: 1px solid #3d6aff !important;
+      // border: 1px solid #3d6aff !important;
     }
     ul {
       background: #2f3137;

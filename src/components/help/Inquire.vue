@@ -16,7 +16,7 @@
   const formatSizeUnits = globalProperties?.$formatSizeUnits;
   const fileInfo = ref<{ [key: string]: any }[]>([]);
   const isFileCountExceed = ref(false);
-  const maxFileSize = 100000;
+  const maxFileSize = 10000000000;
   const form = reactive({
     title: "",
     contents: "",

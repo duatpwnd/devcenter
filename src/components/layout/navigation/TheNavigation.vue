@@ -47,7 +47,7 @@
           :class="{
             toggleActive: isSdkShow,
           }"
-          >SDK</strong
+          >스냅태그 싱크</strong
         >
         <slide-up-down v-model="isSdkShow" :duration="300">
           <ul class="sub-menu">
@@ -55,20 +55,20 @@
               <router-link to="/docs"> SDK를 이용하기전에 </router-link>
             </li>
             <li>
-              <router-link to="/docs"> 스캔SDK </router-link>
+              <router-link to="/docs1"> 스캔SDK </router-link>
               <ul>
-                <li>안드로이드</li>
-                <li>ios</li>
+                <li><router-link to="/docs2"> Android </router-link></li>
+                <li><router-link to="/docs3"> Ios </router-link></li>
               </ul>
             </li>
             <li>
-              <router-link to="/docs"> ETC </router-link>
+              <router-link to="/docs4"> ETC </router-link>
               <ul>
-                <li>안드로이드</li>
-                <li>ios</li>
+                <li><router-link to="/docs5"> Android </router-link></li>
+                <li><router-link to="/docs6"> Ios </router-link></li>
               </ul>
             </li>
-            <li><router-link to="/docs">SDK 다운로드 </router-link></li>
+            <li><router-link to="/docs7">SDK 다운로드 </router-link></li>
           </ul>
         </slide-up-down>
       </li>
@@ -130,11 +130,39 @@
         .slide-up-down__container {
           margin: 5px 0;
           font-size: 14px;
+          position: relative;
+          .sub-menu {
+            &::before {
+              content: "";
+              background: #2d2e31;
+              width: 2px;
+              position: absolute;
+              top: 9px;
+              left: 21px;
+              height: 280px;
+            }
+            ul {
+              li {
+                a {
+                  padding-left: 64px;
+                }
+              }
+            }
+          }
           a {
             color: #525660;
           }
           .router-link-active {
             color: #e3e5e8;
+            &::before {
+              content: "";
+              background: #3d6aff;
+              width: 2px;
+              position: absolute;
+              top: 9px;
+              left: 21px;
+              height: 29px;
+            }
           }
         }
       }
