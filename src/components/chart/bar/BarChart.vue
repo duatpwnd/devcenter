@@ -31,8 +31,8 @@
     layout: {
       padding: {
         top: 238,
-        left: 20,
-        right: 20,
+        left: 0,
+        right: 0,
         bottom: 40,
       },
     },
