@@ -93,7 +93,6 @@
 </template>
 <style scoped lang="scss">
   nav {
-    height: calc(100vh - 80px);
     background-color: #1a1b1e;
     display: inline-block;
     width: 300px;
@@ -104,6 +103,7 @@
     top: 80px;
     left: 0;
     z-index: 2;
+    border-right: 1px solid #2f3137;
     .main-menu {
       color: #b8bfc4;
       li {
