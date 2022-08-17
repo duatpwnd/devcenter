@@ -31,10 +31,10 @@
 <template>
   <main>
     <!-- <D3Map /> -->
-    <TimeSeriesChart />
-    <div class="korea-map-wrapper">
+    <!-- <TimeSeriesChart /> -->
+    <!-- <div class="korea-map-wrapper">
       <KoreaMap :data="regionList" />
-    </div>
+    </div> -->
     <BarChart />
   </main>
 </template>
