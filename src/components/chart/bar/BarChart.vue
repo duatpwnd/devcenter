@@ -1,4 +1,5 @@
 <script setup lang="ts">
+  import { onMounted, ref, defineProps } from "@vue/runtime-core";
   import { Bar } from "vue-chartjs";
   import {
     Chart as ChartJS,
@@ -9,7 +10,10 @@
     CategoryScale,
     LinearScale,
   } from "chart.js";
-
+  interface Props {
+    chartData: { [key: string]: any };
+  }
+  const props = defineProps<Props>();
   ChartJS.register(
     Title,
     Tooltip,
@@ -18,30 +22,9 @@
     CategoryScale,
     LinearScale
   );
-  const chartData = {
-    labels: [
-      "마케팅",
-      "디자인",
-      "개발",
-      "영업",
-      "HR",
-      "식음료",
-      "교육",
-      "제조•생산",
-    ],
-
-    datasets: [
-      {
-        borderColor: "#2F3137",
-        backgroundColor: "#2F3137",
-        hoverBackgroundColor: "#0E63FE",
-        borderRadius: 10,
-        borderSkipped: false,
-        data: [40, 20, 30, 40, 10, 15, 45, 25],
-      },
-    ],
-  };
-
+  onMounted(() => {
+    console.log(props.chartData);
+  });
   const chartOptions = {
     responsive: true,
     scaleShowLabels: false,
@@ -116,7 +99,7 @@
   <div class="wrap">
     <div class="symbol">
       <img src="@/assets/images/Group 33416.svg" />
-      <strong>직군별 / 랩코드 스캔 비율</strong>
+      <strong>{{ chartData.title }}</strong>
       <span class="date">2022.08.01 기준</span>
     </div>
     <Bar
@@ -136,7 +119,7 @@
       position: absolute;
       top: 40px;
       left: 40px;
-      z-index: 1;
+      z-index: 0;
       strong {
         color: #e3e5e8;
         font-size: 18px;

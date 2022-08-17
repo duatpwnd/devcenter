@@ -27,6 +27,48 @@
     전라남도: 12,
     전라북도: 1555,
   };
+  const chartData = {
+    title: "직군별 / 랩코드 스캔 비율",
+    labels: [
+      "마케팅",
+      "디자인",
+      "개발",
+      "영업",
+      "HR",
+      "식음료",
+      "교육",
+      "제조•생산",
+    ],
+    datasets: [
+      {
+        borderColor: "#2F3137",
+        backgroundColor: "#2F3137",
+        hoverBackgroundColor: "#0E63FE",
+        borderRadius: 10,
+        borderSkipped: false,
+        barPercentage: 0.8,
+        categoryPercentage: 0.8,
+        data: [40, 20, 30, 40, 10, 15, 45, 25],
+      },
+    ],
+  };
+  const chartData1 = {
+    title: "연령대 / 랩코드 스캔 비율",
+    labels: ["10대", "20대", "30대", "40대", "50대", "60대"],
+    datasets: [
+      {
+        borderColor: "#2F3137",
+        backgroundColor: "#2F3137",
+        hoverBackgroundColor: "#0E63FE",
+        borderRadius: 10,
+        borderSkipped: false,
+        barPercentage: 0.8,
+        categoryPercentage: 0.8,
+
+        data: [40, 20, 30, 40, 10, 15, 45, 25],
+      },
+    ],
+  };
 </script>
 <template>
   <main>
@@ -35,7 +77,8 @@
     <!-- <div class="korea-map-wrapper">
       <KoreaMap :data="regionList" />
     </div> -->
-    <BarChart />
+    <BarChart :chartData="chartData1" />
+    <BarChart :chartData="chartData" />
   </main>
 </template>
 <style scoped lang="scss">
@@ -43,6 +86,9 @@
     .korea-map-wrapper {
       max-width: 640px;
       margin: 0 auto;
+    }
+    .wrap {
+      margin-top: 40px;
     }
   }
 </style>
