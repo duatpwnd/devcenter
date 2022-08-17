@@ -11,7 +11,7 @@
     LinearScale,
   } from "chart.js";
   interface Props {
-    chartData: { [key: string]: any };
+    chartData: any;
   }
   const props = defineProps<Props>();
   ChartJS.register(
@@ -98,7 +98,7 @@
 <template>
   <div class="wrap">
     <div class="symbol">
-      <img src="@/assets/images/Group 33416.svg" />
+      <img src="@/assets/images/barchart_ico.svg" />
       <strong>{{ chartData.title }}</strong>
       <span class="date">2022.08.01 기준</span>
     </div>
@@ -106,7 +106,7 @@
       class="bar-chart"
       :chart-data="chartData"
       :chart-options="chartOptions"
-      height="240"
+      :height="240"
     />
   </div>
 </template>
