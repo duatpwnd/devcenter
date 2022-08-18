@@ -1,6 +1,7 @@
 <script setup lang="ts">
   import { onMounted, ref } from "@vue/runtime-core";
   import moreViewIco from "@/assets/images/more.svg";
+  import CommentList from "@/components/help/CommentList.vue";
   const isActiveCommentForm = ref(false);
   const options = [{ name: "공유" }, { name: "수정" }, { name: "삭제" }];
   const textAreaEl = ref(null);
@@ -93,10 +94,11 @@
         댓글쓰기
       </button>
     </div>
-    <p class="msg">
+    <!-- <p class="msg">
       댓글이 없습니다. 작성자에게 도움이 되는 좋은 아이디어 또는 의견을
       남겨주세요.
-    </p>
+    </p> -->
+    <CommentList />
     <div class="comment-form" v-show="isActiveCommentForm">
       <div class="editor">
         <textarea
@@ -135,7 +137,7 @@
   main {
     width: 840px;
     margin: 0 auto;
-    padding-top: 60px;
+    padding: 60px 0;
     .category {
       text-align: right;
       color: #525660;
@@ -286,9 +288,10 @@
       text-align: center;
       color: #525660;
       font-size: 14px;
-      margin: 40px 0;
+      margin-top: 40px;
     }
     .comment-form {
+      margin-top: 40px;
       .editor {
         position: relative;
         textarea {
@@ -349,6 +352,9 @@
           letter-spacing: -0.4px;
           background: url("@/assets/images/add_ico.svg")
             rgba(61, 106, 255, 0.12) no-repeat center right 20px / 20px 20px;
+          .file-placeholder {
+            vertical-align: -1px;
+          }
         }
       }
     }
