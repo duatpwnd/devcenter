@@ -10,6 +10,9 @@
     const endDate = new Date();
     date.value = [startDate, endDate];
   });
+  const scrollRight = () => {
+    document.body.scrollIntoView({ behavior: "smooth" });
+  };
   const regionList = {
     서울: 2,
     경기도: 1,
@@ -79,6 +82,7 @@
     <!-- <div class="korea-map-wrapper">
       <KoreaMap :data="regionList" />
     </div> -->
+    <button @click="scrollRight" class="scroll-top-btn"></button>
     <div class="scan-ratio">
       <div class="left-area">
         <img src="@/assets/images/scan_ratio_ico.svg" />
@@ -125,6 +129,16 @@
 <style scoped lang="scss">
   main {
     padding: 40px 130px;
+    .scroll-top-btn {
+      width: 48px;
+      height: 48px;
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      background: url("@/assets/images/scroll_top_ico.svg") no-repeat center
+        center / 48px 48px;
+      z-index: 1;
+    }
     .korea-map-wrapper {
       max-width: 640px;
       margin: 0 auto;
