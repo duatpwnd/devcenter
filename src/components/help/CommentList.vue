@@ -9,7 +9,7 @@
   } from "@vue/runtime-core";
   const globalProperties =
     getCurrentInstance()?.appContext.config.globalProperties;
-  const emit = defineEmits(["update:reportModal"]);
+  const emit = defineEmits(["update:reportModal", "remove:comment"]);
 </script>
 <template>
   <div class="comment">
@@ -24,7 +24,7 @@
       </div>
       <div>
         <button class="edit-btn"></button>
-        <button class="remove-btn"></button>
+        <button class="remove-btn" @click="emit('remove:comment')"></button>
       </div>
     </header>
     <div class="contents">

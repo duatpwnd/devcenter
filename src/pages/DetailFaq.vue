@@ -2,11 +2,13 @@
   import { onMounted, ref } from "@vue/runtime-core";
   import moreViewIco from "@/assets/images/more.svg";
   import CommentList from "@/components/help/CommentList.vue";
+  import BaseModal from "../components/common/BaseModal.vue";
   const isActiveCommentForm = ref(false);
   const options = [{ name: "공유" }, { name: "수정" }, { name: "삭제" }];
   const textAreaEl = ref(null);
   const currentByte = ref(0);
   const isActiveReportModal = ref(false);
+  const isRemoveComment = ref(false);
   const fn_checkByte = (obj: { [key: string]: any }) => {
     const maxByte = 1000; //최대 100바이트
     const text_val = obj.target.value; //입력한 문자
@@ -37,6 +39,14 @@
 </script>
 
 <template>
+  <BaseModal
+    modalType="confirm"
+    v-if="isRemoveComment"
+    @close:Modal="isRemoveComment = false"
+  >
+    <template #title> 의견/ 문의 삭제 </template>
+    <template #contents> 작성하신 글을 삭제 하시겠습니까? </template>
+  </BaseModal>
   <div class="report-modal" v-if="isActiveReportModal">
     <strong>신고하기</strong>
     <div class="row">
@@ -141,7 +151,10 @@
       댓글이 없습니다. 작성자에게 도움이 되는 좋은 아이디어 또는 의견을
       남겨주세요.
     </p> -->
-    <CommentList @update:reportModal="isActiveReportModal = true" />
+    <CommentList
+      @update:reportModal="isActiveReportModal = true"
+      @remove:comment="isRemoveComment = true"
+    />
     <div class="comment-form" v-show="isActiveCommentForm">
       <div class="editor">
         <textarea

@@ -1,11 +1,12 @@
 <script setup lang="ts">
   import { PropType } from "vue";
-  import { onMounted, defineProps } from "@vue/runtime-core";
+  import { onMounted, defineProps, defineEmits } from "@vue/runtime-core";
   interface Props {
-    okEvent: () => void;
+    okEvent?: () => void;
     modalType?: string;
   }
   const props = defineProps<Props>();
+  const emit = defineEmits(["close:Modal"]);
 </script>
 <template>
   <Teleport to="body">
@@ -19,7 +20,11 @@
       <div class="event-area">
         <slot name="button">
           <button class="ok-button" @click="okEvent">확인</button>
-          <button v-if="modalType == 'confirm'" class="cancel-button">
+          <button
+            v-if="modalType == 'confirm'"
+            @click="emit('close:Modal')"
+            class="cancel-button"
+          >
             취소
           </button>
         </slot>
@@ -66,7 +71,7 @@
         background: #3d6aff;
       }
       .cancel-button {
-        background: #ccc;
+        background: #525660;
       }
     }
   }
