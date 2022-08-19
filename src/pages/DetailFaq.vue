@@ -39,13 +39,15 @@
 </script>
 
 <template>
-  <BaseModal
-    modalType="confirm"
-    v-if="isRemoveComment"
-    @close:Modal="isRemoveComment = false"
-  >
+  <BaseModal modalType="confirm" v-if="isRemoveComment">
     <template #title> 의견/ 문의 삭제 </template>
     <template #contents> 작성하신 글을 삭제 하시겠습니까? </template>
+    <template #button>
+      <button class="cancel-button" @click="isRemoveComment = false">
+        취소
+      </button>
+      <button class="ok-button">삭제</button>
+    </template>
   </BaseModal>
   <div class="report-modal" v-if="isActiveReportModal">
     <strong>신고하기</strong>
@@ -190,6 +192,25 @@
 </template>
 
 <style scoped lang="scss">
+  .modal {
+    .event-area {
+      display: flex;
+      column-gap: 20px;
+      button {
+        width: 100%;
+        height: 60px;
+        color: #e3e5e8;
+        font-size: 18px;
+        border-radius: 12px;
+      }
+      .ok-button {
+        background: #3d6aff;
+      }
+      .cancel-button {
+        background: #525660;
+      }
+    }
+  }
   .report-modal {
     position: fixed;
     top: 50%;
