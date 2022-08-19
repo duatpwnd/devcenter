@@ -3,11 +3,13 @@
     onMounted,
     onActivated,
     ref,
+    defineEmits,
     getCurrentInstance,
     defineProps,
   } from "@vue/runtime-core";
   const globalProperties =
     getCurrentInstance()?.appContext.config.globalProperties;
+  const emit = defineEmits(["update:reportModal"]);
 </script>
 <template>
   <div class="comment">
@@ -16,7 +18,9 @@
         <span class="last-name">김</span>
         <span class="full-name">김스냅</span>
         <span class="date">2022.07.24 12:24</span>
-        <button class="report-btn">신고</button>
+        <button class="report-btn" @click="emit('update:reportModal')">
+          신고
+        </button>
       </div>
       <div>
         <button class="edit-btn"></button>

@@ -6,6 +6,7 @@
   const options = [{ name: "공유" }, { name: "수정" }, { name: "삭제" }];
   const textAreaEl = ref(null);
   const currentByte = ref(0);
+  const isActiveReportModal = ref(false);
   const fn_checkByte = (obj: { [key: string]: any }) => {
     const maxByte = 1000; //최대 100바이트
     const text_val = obj.target.value; //입력한 문자
@@ -36,6 +37,48 @@
 </script>
 
 <template>
+  <div class="report-modal" v-if="isActiveReportModal">
+    <strong>신고하기</strong>
+    <div class="row">
+      <label for="report1">
+        <input id="report1" type="radio" name="reports" />
+        <span class="checkmark"></span>
+      </label>
+      <dl>
+        <dt>부적절한 글입니다.</dt>
+        <dd>
+          이 주제와 맞지 않는 글 또는 욕설 및 노골적인 콘텐츠가 포함되어
+          있습니다.
+        </dd>
+      </dl>
+    </div>
+    <div class="row">
+      <label for="report2">
+        <input id="report2" type="radio" name="reports" />
+        <span class="checkmark"></span>
+      </label>
+      <dl>
+        <dt>스팸</dt>
+        <dd>반복적으로 게시되거나 특정 기업, 상품을 광고하는 글입니다.</dd>
+      </dl>
+    </div>
+    <div class="row">
+      <label for="report3">
+        <input id="report3" type="radio" name="reports" />
+        <span class="checkmark"></span>
+      </label>
+      <dl>
+        <dt>모욕적인 내용 또는 개인정보 침해</dt>
+        <dd>모욕 또는 개인 정보 침해되는 내용이 포함되어 있습니다.</dd>
+      </dl>
+    </div>
+    <div class="btn-wrap">
+      <button class="cancel-btn" @click="isActiveReportModal = false">
+        취소
+      </button>
+      <button class="report-btn">신고하기</button>
+    </div>
+  </div>
   <main>
     <div class="category">
       <span>문의하기</span>
@@ -98,7 +141,7 @@
       댓글이 없습니다. 작성자에게 도움이 되는 좋은 아이디어 또는 의견을
       남겨주세요.
     </p> -->
-    <CommentList />
+    <CommentList @update:reportModal="isActiveReportModal = true" />
     <div class="comment-form" v-show="isActiveCommentForm">
       <div class="editor">
         <textarea
@@ -134,6 +177,77 @@
 </template>
 
 <style scoped lang="scss">
+  .report-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 40px;
+    max-width: 510px;
+    width: 100%;
+    box-sizing: border-box;
+    background: #34363c;
+    border-radius: 16px;
+    .btn-wrap {
+      margin-top: 40px;
+      display: flex;
+      column-gap: 20px;
+      button {
+        width: 100%;
+        color: #e3e5e8;
+        font-size: 18px;
+        padding: 18.5px 0;
+        background: #525660;
+        border-radius: 12px;
+      }
+      .report-btn {
+        background: #3d6aff;
+      }
+    }
+    strong {
+      color: #e3e5e8;
+      font-size: 28px;
+    }
+    .row {
+      &:first-of-type {
+        margin-top: 32px;
+      }
+      &:not(:first-of-type) {
+        margin-top: 24px;
+      }
+      dl {
+        width: calc(100% - 32px);
+        margin-left: 12px;
+        vertical-align: top;
+        display: inline-block;
+        dt {
+          color: #e3e5e8;
+          font-size: 18px;
+        }
+        dd {
+          color: #757b8a;
+          font-size: 14px;
+          margin-top: 10px;
+        }
+      }
+      input[type="radio"] {
+        -webkit-appearance: auto;
+        display: none;
+      }
+      input[type="radio"] + .checkmark {
+        width: 20px;
+        height: 20px;
+        display: inline-block;
+        border-radius: 4px;
+        background: url("@/assets/images/inactive_circle_check_ico.svg")
+          no-repeat center / 20px 20px;
+      }
+      input[type="radio"]:checked + .checkmark {
+        background: url("@/assets/images/active_circle_check_ico.svg") no-repeat
+          center / 20px 20px;
+      }
+    }
+  }
   main {
     width: 840px;
     margin: 0 auto;

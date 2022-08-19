@@ -1,7 +1,7 @@
 <script setup lang="ts">
   import { onMounted, computed, defineProps } from "@vue/runtime-core";
   interface Props {
-    modelValue: Boolean | string[];
+    modelValue: string[];
     value?: string;
     fieldId: string;
   }
