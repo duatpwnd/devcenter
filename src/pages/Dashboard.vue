@@ -154,7 +154,7 @@
       justify-content: space-between;
       .left-area {
         align-self: center;
-        width: 27%;
+        width: 30%;
         strong {
           color: #e3e5e8;
           font-size: 18px;
@@ -209,10 +209,16 @@
       }
       .right-area {
         align-self: center;
+        text-align: right;
+        width: 60%;
       }
       .men {
-        width: 220px !important;
-        height: 220px !important;
+        width: 40% !important;
+        height: auto !important;
+      }
+      .women {
+        width: 32% !important;
+        height: auto !important;
       }
       .men,
       .women {
