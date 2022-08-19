@@ -69,7 +69,7 @@
   </header>
   <mq-responsive :target="breakPoint">
     <Navigation
-      v-if="routeName != 'signIn' && !routeName.startsWith('/help')"
+      v-if="routeName != '/signin' && !routeName.startsWith('/help')"
     />
   </mq-responsive>
 </template>
