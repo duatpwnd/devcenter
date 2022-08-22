@@ -3,6 +3,7 @@
   import { useMq } from "vue3-mq";
   import CircleProgress from "vue3-circle-progress";
   import "vue3-circle-progress/dist/circle-progress.css";
+  import BaseSelectBox from "../components/common/BaseSelectBox.vue";
   const date = ref();
   const mq = useMq();
   onMounted(() => {
@@ -69,11 +70,20 @@
         borderSkipped: false,
         barPercentage: 0.8,
         categoryPercentage: 0.8,
-
         data: [40, 20, 30, 40, 10, 15, 45, 25],
       },
     ],
   };
+  const options = [
+    { name: "2022년 08월" },
+    { name: "2022년 01월" },
+    { name: "2022년 02월" },
+    { name: "2022년 03월" },
+    { name: "2022년 04월" },
+    { name: "2022년 05월" },
+    { name: "2022년 06월" },
+    { name: "2022년 07월" },
+  ];
 </script>
 <template>
   <main>
@@ -82,6 +92,20 @@
     <!-- <div class="korea-map-wrapper">
       <KoreaMap :data="regionList" />
     </div> -->
+    <BaseSelectBox
+      :options="options"
+      :style="{
+        button: {
+          fontSize: '13px',
+          background: 'transparent',
+          borderRadius: '4px',
+          lineHeight: 2.616,
+        },
+        li: {
+          fontSize: '13px',
+        },
+      }"
+    />
     <button @click="scrollRight" class="scroll-top-btn"></button>
     <div class="scan-ratio">
       <div class="left-area">
@@ -122,13 +146,22 @@
         />
       </div>
     </div>
-    <BarChart :chartData="chartData1" />
-    <BarChart :chartData="chartData" />
+    <BarChart :chartData="chartData1" class="bar-chart1" />
+    <BarChart :chartData="chartData" class="bar-chart2" />
   </main>
 </template>
 <style scoped lang="scss">
   main {
     padding: 40px 130px;
+    .select-box-wrap {
+      margin-bottom: 40px;
+    }
+    .bar-chart1 {
+      max-width: 560px;
+    }
+    .bar-chart2 {
+      max-width: 728px;
+    }
     .scroll-top-btn {
       width: 48px;
       height: 48px;

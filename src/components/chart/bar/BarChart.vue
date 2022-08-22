@@ -27,6 +27,8 @@
   });
   const chartOptions = {
     responsive: true,
+    maintainAspectRatio: false,
+
     scaleShowLabels: false,
     layout: {
       padding: {
@@ -49,10 +51,10 @@
         backgroundColor: "#1A1B1E",
         bodyColor: "#E3E5E8",
         padding: {
-          left: 20,
-          right: 20,
-          top: 12,
-          bottom: 12,
+          left: 16,
+          right: 16,
+          top: 8,
+          bottom: 8,
         },
         borderColor: "#2F3137",
         borderWidth: 2,
@@ -106,7 +108,7 @@
       class="bar-chart"
       :chart-data="chartData"
       :chart-options="chartOptions"
-      :height="240"
+      :height="480"
     />
   </div>
 </template>
@@ -124,7 +126,7 @@
         color: #e3e5e8;
         font-size: 18px;
         display: block;
-        margin-top: 28px;
+        margin-top: 40px;
       }
       .date {
         margin-top: 4px;
