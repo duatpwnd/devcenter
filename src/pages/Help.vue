@@ -112,6 +112,8 @@
       letter-spacing: -0.9px;
       color: #e3e5e8;
       line-height: 56px;
+      background: url("https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/apple/325/raised-fist_light-skin-tone_270a-1f3fb_1f3fb.png")
+        no-repeat top 60px right 70px / 43px 40px;
     }
     .guide2 {
       line-height: 44px;
