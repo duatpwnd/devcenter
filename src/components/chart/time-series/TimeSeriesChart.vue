@@ -102,7 +102,7 @@
     },
   ];
   const setTimeSeriesChart = () => {
-    axios
+    return axios
       .get(
         "https://raw.githubusercontent.com/plotly/datasets/master/finance-charts-apple.csv"
       )
@@ -112,11 +112,8 @@
         data[0].y = unpack(csvToJSONarray.value, "AAPL.High");
         data[1].x = unpack(csvToJSONarray.value, "Date");
         data[1].y = unpack(csvToJSONarray.value, "AAPL.Low");
-
-        Plotly.newPlot("timeSeriesChart", data, layout, config);
       });
   };
-  setTimeSeriesChart();
   const changeCompany = (params: string) => {
     if (params == "헤드쿼터") {
       data[0].x = unpack(csvToJSONarray.value, "Date");
@@ -137,6 +134,10 @@
     }
     Plotly.newPlot("timeSeriesChart", data, layout, config);
   };
+  await setTimeSeriesChart();
+  onMounted(() => {
+    Plotly.newPlot("timeSeriesChart", data, layout, config);
+  });
 </script>
 <template>
   <div class="time-series-wrap">

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { onMounted, ref } from "@vue/runtime-core";
+  import { onMounted, ref, Suspense, onErrorCaptured } from "@vue/runtime-core";
   import { useMq } from "vue3-mq";
   import CircleProgress from "vue3-circle-progress";
   import "vue3-circle-progress/dist/circle-progress.css";
@@ -84,11 +84,23 @@
     { name: "2022년 06월" },
     { name: "2022년 07월" },
   ];
+  onErrorCaptured(() => {
+    console.log("onErrorCaptured");
+  });
 </script>
 <template>
   <main>
     <!-- <D3Map /> -->
-    <!-- <TimeSeriesChart /> -->
+    <Suspense>
+      <template #default>
+        <TimeSeriesChart />
+      </template>
+      <template #fallback>
+        <div class="spinner-container">
+          <div class="spinner"></div>
+        </div>
+      </template>
+    </Suspense>
     <!-- <div class="korea-map-wrapper">
       <KoreaMap :data="regionList" />
     </div> -->
@@ -151,6 +163,35 @@
   </main>
 </template>
 <style scoped lang="scss">
+  .spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 240px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+  }
+  .spinner {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 5px solid #e0e0e0;
+    border-bottom: 5px solid #fe9616;
+    animation: spin 1s linear infinite;
+    position: relative;
+  }
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
   main {
     padding: 40px 130px;
     .select-box-wrap {
